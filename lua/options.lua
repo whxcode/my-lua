@@ -87,12 +87,12 @@ o.formatoptions    = o.formatoptions
 o.splitbelow       = true                   -- ':new' ':split' below current
 o.splitright       = true                   -- ':vnew' ':vsplit' right of current
 
-o.foldenable       = true                   -- enable folding
-o.foldlevelstart   = 10                     -- open most folds by default
-o.foldnestmax      = 10                     -- 10 nested fold max
-o.foldmethod       = "indent"               -- fold based on indent level
+-- o.foldenable       = true                   -- enable folding
+-- o.foldlevelstart   = 10                     -- open most folds by default
+-- o.foldnestmax      = 10                     -- 10 nested fold max
+-- o.foldmethod       = "indent"               -- fold based on indent level
 
-o.undofile         = false                  -- no undo file
+o.undofile         = true                  -- no undo file
 o.hidden           = true                   -- do not unload buffer when abandoned
 
 o.ignorecase       = true                   -- ignore case on search
@@ -189,6 +189,14 @@ vim.g.markdown_fenced_languages = {
 -- Map leader to <space>
 vim.g.mapleader                 = " "
 vim.g.maplocalleader            = " "
+
+vim.opt.spell = true
+vim.opt.spelllang = "en_us,jbk"
+
+vim.g.neovide_padding_top = 0
+vim.g.neovide_padding_left = 0
+vim.g.neovide_padding_right = 0
+vim.g.neovide_padding_bottom = 0
 
 -- We do this to prevent the loading of the system fzf.vim plugin. This is
 -- present at least on Arch/Manjaro/Void

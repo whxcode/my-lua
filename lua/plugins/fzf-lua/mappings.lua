@@ -45,6 +45,11 @@ map_fzf("n", "<c-K>", "workdirs", {
 
 map_fzf("n", "<leader> ", "files", {
   desc = "files",
+  winopts = {
+    height = 0.95,
+    width  = 0.95,
+    row    = 0.40,
+  }
 })
 
 map_fzf("n", "<leader>f", "builtin", { desc = "builtin commands" })
@@ -121,8 +126,25 @@ map_fzf("n", "<leader>la", "lsp_code_actions", {
 map_fzf("n", "<leader>e", "lsp_document_diagnostics", { desc = "document diagnostics [LSP]" })
 map_fzf("n", "<leader>lG", "lsp_workspace_diagnostics", { desc = "workspace diagnostics [LSP]" })
 
+map_fzf("n", "gr", "lsp_references", { desc = "document references [LSP]",
+
+  winopts = {
+    height = 0.95,
+    width  = 0.95,
+    row    = 0.40,
+  }
+})
+
 -- Git
-map_fzf("n", "<leader>fg", "git_status", { desc = "git status" })
+map_fzf("n", "<leader>fg", "git_status", { 
+  desc = "git status",
+  winopts = {
+    height = 0.95,
+    width  = 0.95,
+    row    = 0.40,
+  }
+})
+
 map_fzf("n", "<leader>fb", "git_branches", { desc = "git branches" })
 map_fzf("n", "<leader>gC", "git_commits", { desc = "git commits (project)" })
 map_fzf({ "n", "v" }, "<leader>gc", "git_bcommits", { desc = "git commits (buffer)" })
@@ -152,6 +174,7 @@ vim.keymap.set("n", "qq", "<cmd>:q!<CR>", {
 vim.keymap.set("n", "<leader>r", "<cmd>lua require('fzf-lua').grep()<CR><CR>", { 
   desc = "search content",
   silent = true,
+
 })
 
 

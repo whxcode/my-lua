@@ -29,14 +29,14 @@ local on_attach = function(client, bufnr)
   end
 
 
-  map("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>",
+  map("n", "M", "<cmd>lua vim.lsp.buf.hover()<CR>",
     { desc = "hover information [LSP]" })
   map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>",
     { desc = "goto definition [LSP]" })
   map("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>",
     { desc = "goto declaration [LSP]" })
-  map("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>",
-    { desc = "goto reference [LSP]" })
+  --map("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>",
+   -- { desc = "goto reference [LSP]" })
   map("n", "gm", "<cmd>lua vim.lsp.buf.implementation()<CR>",
     { desc = "goto implementation [LSP]" })
   map("n", "gy", "<cmd>lua vim.lsp.buf.type_definition()<CR>",
@@ -46,9 +46,7 @@ local on_attach = function(client, bufnr)
   map("v", "gA", "<cmd>lua vim.lsp.buf.range_code_action()<CR>",
     { desc = "range code actions [LSP]" })
   -- use our own rename popup implementation
-  map("n", "gR", [[<cmd>lua require("lsp.rename").rename()<CR>]],
-    { desc = "rename [LSP]" })
-  map("n", "<leader>lR", [[<cmd>lua require("lsp.rename").rename()<CR>]],
+  map("n", "<leader>rn", [[<cmd>lua require("lsp.rename").rename()<CR>]],
     { desc = "rename [LSP]" })
   map("n", "<leader>K", "<cmd>lua vim.lsp.buf.signature_help()<CR>",
     { desc = "signature help [LSP]" })
