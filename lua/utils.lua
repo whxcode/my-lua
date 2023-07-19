@@ -131,22 +131,25 @@ function M.get_visual_selection(nl_literal)
   return table.concat(lines, nl_literal and "\\n" or "\n")
 end
 
-function M.toggle_colorcolumn()
-  local wininfo = vim.fn.getwininfo()
-  for _, win in pairs(wininfo) do
-    local ft = vim.api.nvim_buf_get_option(win["bufnr"], "filetype")
-    if ft == nil or ft == "TelescopePrompt" then return end
-    local colorcolumn = ""
-    if win["width"] >= vim.g._colorcolumn then
-      colorcolumn = tostring(vim.g._colorcolumn)
-    end
-    -- TOOD: messes up tab highlighting, why?
-    -- vim.api.nvim_win_set_option(win['winid'], 'colorcolumn', colorcolumn)
-    vim.api.nvim_win_call(win["winid"], function()
-      vim.wo.colorcolumn = colorcolumn
-    end)
-  end
-end
+
+--
+-- function M.toggle_colorcolumn()
+--   local wininfo = vim.fn.getwininfo()
+--   for _, win in pairs(wininfo) do
+--     local ft = vim.api.nvim_buf_get_option(win["bufnr"], "filetype")
+--     if ft == nil or ft == "TelescopePrompt" then return end
+--     local colorcolumn = ""
+--     if win["width"] >= vim.g._colorcolumn then
+--       colorcolumn = tostring(vim.g._colorcolumn)
+--     end
+--     -- TOOD: messes up tab highlighting, why?
+--     -- vim.api.nvim_win_set_option(win['winid'], 'colorcolumn', colorcolumn)
+--     vim.api.nvim_win_call(win["winid"], function()
+--       vim.wo.colorcolumn = colorcolumn
+--     end)
+--   end
+-- end
+
 
 -- 'q': find the quickfix window
 -- 'l': find all loclist windows

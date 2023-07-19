@@ -49,55 +49,13 @@ local config = {
   },
   sections = {
     -- these are to remove the defaults
- lualine_a = {
-   {
-      'filename',
-      file_status = true,      -- Displays file status (readonly status, modified status)
-      newfile_status = false,  -- Display new file status (new file means no write after created)
-      path =1 ,                -- 0: Just the filename
-      shorting_target = 40,    -- Shortens path to leave 40 spaces in the window
-    }
-
-  },
-  lualine_b = {
-    {
-      'diagnostics',
-
-      -- Table of diagnostic sources, available sources are:
-      --   'nvim_lsp', 'nvim_diagnostic', 'nvim_workspace_diagnostic', 'coc', 'ale', 'vim_lsp'.
-      -- or a function that returns a table as such:
-      --   { error=error_cnt, warn=warn_cnt, info=info_cnt, hint=hint_cnt }
-      sources = { 'nvim_diagnostic', 'coc' },
-
-      -- Displays diagnostics for the defined severity types
-      sections = { 'error', 'warn', 'info', 'hint' },
-
-      diagnostics_color = {
-        -- Same values as the general color option can be used here.
-        error = 'DiagnosticError', -- Changes diagnostics' error color.
-        warn  = 'DiagnosticWarn',  -- Changes diagnostics' warn color.
-        info  = 'DiagnosticInfo',  -- Changes diagnostics' info color.
-        hint  = 'DiagnosticHint',  -- Changes diagnostics' hint color.
-      },
-      symbols = {error = '❌', warn = '⚠️', info = '❕', hint = '🏁'},
-      colored = true,           -- Displays diagnostics status in color if set to true.
-      update_in_insert = false, -- Update diagnostics in insert mode.
-      always_visible = false,   -- Show diagnostics even if there are none.
-    }
-    },
-   lualine_c = {
-            --{
-             -- function()
-              --    return navic.get_location()
-              --end,
-              --cond = function()
-               --   return navic.is_available()
-              --end
-            --},
-        },
+    lualine_a = {},
+    lualine_b = {},
+    lualine_y = {},
+    lualine_z = {},
     -- These will be filled later
-    lualine_x={},
-
+    lualine_c = {},
+    lualine_x = {},
   },
   inactive_sections = {
     -- these are to remove the defaults
@@ -107,25 +65,99 @@ local config = {
     lualine_z = {},
     lualine_c = {},
     lualine_x = {},
-  }
+  },
 }
 
+-- Inserts a component in lualine_c at left section
+local function ins_left(component)
+  table.insert(config.sections.lualine_c, component)
+end
 
--- Inserts a component in lualine_x ot right section
+-- Inserts a component in lualine_x at right section
 local function ins_right(component)
   table.insert(config.sections.lualine_x, component)
 end
 
+ins_left {
+  function()
+    return '▊'
+  end,
+  color = { fg = colors.blue }, -- Sets highlighting of component
+  padding = { left = 0, right = 1 }, -- We don't need space before this
+}
+
+ins_left {
+  -- mode component
+  function()
+    return ''
+  end,
+  color = function()
+    -- auto change color according to neovims mode
+    local mode_color = {
+      n = colors.red,
+      i = colors.green,
+      v = colors.blue,
+      [''] = colors.blue,
+      V = colors.blue,
+      c = colors.magenta,
+      no = colors.red,
+      s = colors.orange,
+      S = colors.orange,
+      [''] = colors.orange,
+      ic = colors.yellow,
+      R = colors.violet,
+      Rv = colors.violet,
+      cv = colors.red,
+      ce = colors.red,
+      r = colors.cyan,
+      rm = colors.cyan,
+      ['r?'] = colors.cyan,
+      ['!'] = colors.red,
+      t = colors.red,
+    }
+    return { fg = mode_color[vim.fn.mode()] }
+  end,
+  padding = { right = 1 },
+}
+
+
+ins_left {
+  'filename',
+  file_status = true,      -- Displays file status (readonly status, modified status)
+  newfile_status = false,  -- Display new file status (new file means no write after created)
+  path =1 ,                -- 0: Just the filename
+  shorting_target = 40,    -- Shortens path to leave 40 spaces in the window
+  cond = conditions.buffer_not_empty,
+  color = { fg = colors.magenta, gui = 'bold' },
+}
+
+
+ins_left {
+  'diagnostics',
+  sources = { 'nvim_diagnostic' },
+  symbols = { error = ' ', warn = ' ', info = ' ' },
+  diagnostics_color = {
+    color_error = { fg = colors.red },
+    color_warn = { fg = colors.yellow },
+    color_info = { fg = colors.cyan },
+  },
+}
+
+-- Insert mid section. You can make any number of sections in neovim :)
+-- for lualine it's any number greater then 2
+ins_left {
+  function()
+    return '%='
+  end,
+}
+
 
 ins_right {
   'branch',
+  icon = '',
   color = { fg = colors.violet, gui = 'bold' },
 }
 
+
 -- Now don't forget to initialize lualine
--- vim.o.statusline = "%{%v:lua.require'nvim-navic'.get_location()%}" 
-
-
 lualine.setup(config)
-
-

@@ -84,14 +84,14 @@ augroup("ResizeWindows", function(g)
       command = "tabdo wincmd ="
     })
 end)
-
-augroup("ToggleColorcolumn", function(g)
-  aucmd({ "VimResized", "WinEnter", "BufWinEnter" }, {
-    group = g,
-    pattern = "*",
-    command = [[lua require"utils".toggle_colorcolumn()]],
-  })
-end)
+--
+-- augroup("ToggleColorcolumn", function(g)
+--   aucmd({ "VimResized", "WinEnter", "BufWinEnter" }, {
+--     group = g,
+--     pattern = "*",
+--     command = [[lua require"utils".toggle_colorcolumn()]],
+--   })
+-- end)
 
 augroup("ToggleSearchHL", function(g)
   aucmd("InsertEnter",

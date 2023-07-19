@@ -126,7 +126,8 @@ map_fzf("n", "<leader>la", "lsp_code_actions", {
 map_fzf("n", "<leader>e", "lsp_document_diagnostics", { desc = "document diagnostics [LSP]" })
 map_fzf("n", "<leader>lG", "lsp_workspace_diagnostics", { desc = "workspace diagnostics [LSP]" })
 
-map_fzf("n", "gr", "lsp_references", { desc = "document references [LSP]",
+map_fzf("n", "gr", "lsp_references", {
+  desc = "document references [LSP]",
 
   winopts = {
     height = 0.95,
@@ -136,7 +137,7 @@ map_fzf("n", "gr", "lsp_references", { desc = "document references [LSP]",
 })
 
 -- Git
-map_fzf("n", "<leader>fg", "git_status", { 
+map_fzf("n", "<leader>fg", "git_status", {
   desc = "git status",
   winopts = {
     height = 0.95,
@@ -161,20 +162,18 @@ map_fzf("n", "<leader>gS", "git_status_tmuxZ", {
 })
 
 
-vim.keymap.set("n", "<leader>nh", "<cmd>noh<CR>", { 
+vim.keymap.set("n", "<leader>nh", "<cmd>noh<CR>", {
   desc = "no light",
   silent = true,
 })
 
-vim.keymap.set("n", "qq", "<cmd>:q!<CR>", { 
+vim.keymap.set("n", "qq", "<cmd>:q!<CR>", {
   desc = "exit",
   silent = true,
 })
 
-vim.keymap.set("n", "<leader>r", "<cmd>lua require('fzf-lua').grep()<CR><CR>", { 
+vim.keymap.set("n", "<leader>r", "<cmd>lua require('fzf-lua').grep()<CR><CR>", {
   desc = "search content",
   silent = true,
 
 })
-
-

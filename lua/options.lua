@@ -17,19 +17,20 @@ vim.cmd [[set path=.,,,$PWD/**]]
 -- unnamedplus = use the + register (cmd-v paste in our term)
 o.clipboard         = 'unnamed'
 
-o.cmdheight        = 2                           -- cmdline height
-o.cmdwinheight     = math.floor(vim.o.lines / 2) -- 'q:' window height
+ o.cmdheight        = 0                           -- cmdline height
+ o.cmdwinheight     = math.floor(vim.o.lines / 2) -- 'q:' window height
 o.scrolloff        = 3                           -- min number of lines to keep between cursor and screen edge
-o.sidescrolloff    = 5                           -- min number of cols to keep between cursor and screen edge
+-- o.sidescrolloff    = 5                           -- min number of cols to keep between cursor and screen edge
 o.textwidth        = 99                          -- max inserted text width for paste operations
 o.number           = true                        -- show absolute line no. at the cursor pos
 o.relativenumber   = true                        -- otherwise, show relative numbers in the ruler
 o.cursorline       = true                        -- Show a line where the current cursor is
-o.signcolumn       = "no"                       -- Show sign column as first column
-vim.g._colorcolumn = 100                         -- global var, mark column 100
-o.colorcolumn      = tostring(vim.g._colorcolumn)
-o.breakindent      = true                        -- start wrapped lines indented
-o.linebreak        = true                        -- do not break words on line wrap
+
+--o.signcolumn       = "no"                       -- Show sign column as first column
+--vim.g._colorcolumn = 100                         -- global var, mark column 100
+-- o.colorcolumn      = tostring(vim.g._colorcolumn)
+--o.breakindent      = true                        -- start wrapped lines indented
+--o.linebreak        = true                        -- do not break words on line wrap
 
 -- Characters to display on ':set list',explore glyphs using:
 -- `xfd -fa "InputMonoNerdFont:style:Regular"` or
@@ -84,7 +85,7 @@ o.formatoptions    = o.formatoptions
     + "j"                                   -- Auto-remove comments if possible.
     - "2"                                   -- I'm not in gradeschool anymore
 
-o.splitbelow       = true                   -- ':new' ':split' below current
+-- o.splitbelow       = true                   -- ':new' ':split' below current
 o.splitright       = true                   -- ':vnew' ':vsplit' right of current
 
 -- o.foldenable       = true                   -- enable folding
@@ -190,14 +191,8 @@ vim.g.markdown_fenced_languages = {
 vim.g.mapleader                 = " "
 vim.g.maplocalleader            = " "
 
-vim.opt.spell = true
-vim.opt.spelllang = "en_us,jbk"
-
-vim.g.neovide_padding_top = 0
-vim.g.neovide_padding_left = 0
-vim.g.neovide_padding_right = 0
-vim.g.neovide_padding_bottom = 0
-
+-- vim.opt.spell = true
+-- vim.opt.spelllang = "en_us"
 -- We do this to prevent the loading of the system fzf.vim plugin. This is
 -- present at least on Arch/Manjaro/Void
 -- vim.api.nvim_command("set rtp-=/usr/share/vim/vimfiles")
