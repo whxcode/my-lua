@@ -45,7 +45,7 @@ M.config = function()
     -- we use 'comleteopt=...,noselect' but we still want cmp to autoselect
     -- an item if recommended by the LSP server (try with gopls, rust_analyzer)
     -- uncomment to disable
-    -- preselect = cmp.PreselectMode.None,
+    preselect = cmp.PreselectMode.None,
 
     mapping = {
       ["<Up>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i" }),

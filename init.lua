@@ -15,7 +15,7 @@ vim.g.spell = false
 vim.g.enable_spelunker_vim = 1
 vim.g.enable_spelunker_vim_on_readonly = 1
 vim.g.spelunker_check_type = 2
-vim.g.shell = 'zsh'
+vim.g.shell = "zsh"
 -- aeffawxfeaf
 
 vim.cmd [[
@@ -32,7 +32,6 @@ vim.api.nvim_create_autocmd({ "VimEnter" }, {
   pattern = { "*" },
   callback = function()
     vim.api.nvim_exec(":SpelunkerStart", false)
-    vim.api.nvim_exec(":echo 1", false)
   end,
 })
 
@@ -60,6 +59,8 @@ require("ufo").setup({
     return { "treesitter", "indent" }
   end
 })
+
+require "nvim-tree.view".View.winopts.relativenumber = true
 
 
 vim.cmd [[colorscheme dracula]]

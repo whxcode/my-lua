@@ -9,7 +9,9 @@ M.init = function()
 end
 
 M.config = function()
-  require "nvim-tree".setup {}
+  require "nvim-tree".setup {
+
+  }
 end
 
 return M

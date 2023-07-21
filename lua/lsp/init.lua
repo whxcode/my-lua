@@ -57,6 +57,9 @@ local custom_settings = {
       }
     }
   },
+  ["tsserver"] = {
+    single_file_support = true
+  }
 }
 
 local manually_installed_servers = {

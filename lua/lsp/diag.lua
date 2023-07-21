@@ -2,22 +2,22 @@
 local signs = {
   {
     name = "DiagnosticSignHint",
-    text = "󰌵"
+    text = "❓"
   },
   {
     name = "DiagnosticSignInfo",
-    text = ""
-    -- text = '',
+    -- text =
+    text = "",
     -- text = '',
   },
   {
     name = "DiagnosticSignWarn",
-    text = "",
+    text = "⚠️",
     -- text = ''
   },
   {
     name = "DiagnosticSignError",
-    text = ""
+    text = "❌"
     -- text = '󰅚'
   },
 }

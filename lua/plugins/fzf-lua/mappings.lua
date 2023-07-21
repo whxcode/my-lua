@@ -177,3 +177,9 @@ vim.keymap.set("n", "<leader>r", "<cmd>lua require('fzf-lua').grep()<CR><CR>", {
   silent = true,
 
 })
+
+vim.keymap.set("n", "<leader>rr", "<cmd>lua require('fzf-lua').grep_cword()<CR><CR>", {
+  desc = "search content",
+  silent = true,
+
+})
