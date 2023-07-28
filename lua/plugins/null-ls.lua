@@ -10,6 +10,7 @@ M.config = function()
       null_ls.builtins.formatting.prettier.with({
         extra_filetypes = { "toml" },
       }),
+      null_ls.builtins.completion.spell,
     },
     on_attach = function(_, bufnr)
       vim.keymap.set("n", "gq",

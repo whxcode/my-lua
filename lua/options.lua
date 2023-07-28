@@ -9,6 +9,13 @@ o.switchbuf     = "useopen"
 o.fileencoding  = "utf-8"
 o.matchpairs    = { "(:)", "{:}", "[:]", "<:>" }
 
+
+o.foldenable     = true       -- enable folding
+o.foldlevelstart = 10         -- open most folds by default
+o.foldnestmax    = 10         -- 10 nested fold max
+o.foldmethod     = "indent"   -- fold based on indent level
+
+
 -- recursive :find in current dir
 vim.cmd [[set path=.,,,$PWD/**]]
 

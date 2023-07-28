@@ -36,12 +36,12 @@ local on_attach = function(client, bufnr)
   map("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>",
     { desc = "goto declaration [LSP]" })
   --map("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>",
-   -- { desc = "goto reference [LSP]" })
+  -- { desc = "goto reference [LSP]" })
   map("n", "gm", "<cmd>lua vim.lsp.buf.implementation()<CR>",
     { desc = "goto implementation [LSP]" })
   map("n", "gy", "<cmd>lua vim.lsp.buf.type_definition()<CR>",
     { desc = "goto type definition [LSP]" })
-  map("n", "gA", "<cmd>lua vim.lsp.buf.code_action()<CR>",
+  map("n", "ga", "<cmd>lua vim.lsp.buf.code_action()<CR>",
     { desc = "code actions [LSP]" })
   map("v", "gA", "<cmd>lua vim.lsp.buf.range_code_action()<CR>",
     { desc = "range code actions [LSP]" })
@@ -63,9 +63,9 @@ local on_attach = function(client, bufnr)
   -- neovim PR #16057
   -- https://github.com/neovim/neovim/pull/16057
   local winopts = "{ float =  { border = 'rounded' } }"
-  map("n", "[d", ("<cmd>lua vim.diagnostic.goto_prev(%s)<CR>"):format(winopts),
+  map("n", "[e", ("<cmd>lua vim.diagnostic.goto_prev(%s)<CR>"):format(winopts),
     { desc = "previous diagnostic [LSP]" })
-  map("n", "]d", ("<cmd>lua vim.diagnostic.goto_next(%s)<CR>"):format(winopts),
+  map("n", "]e", ("<cmd>lua vim.diagnostic.goto_next(%s)<CR>"):format(winopts),
     { desc = "next diagnostic [LSP]" })
   map("n", "<leader>lc", "<cmd>lua vim.diagnostic.reset()<CR>",
     { desc = "clear diagnostics [LSP]" })
