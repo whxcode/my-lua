@@ -42,5 +42,8 @@ require('lazy').setup(vim.tbl_extend('keep', config.user_lazy_opts(), {
 	},
 }))
 
+
+-- vim.api.nvim_set_keymap('n', ';;', ':', {  })
+
 config.setup()
 -- Enjoy!

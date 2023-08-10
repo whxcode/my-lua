@@ -66,30 +66,30 @@ local plugin_directories = function(opts)
 	end
 
 	require('telescope.pickers')
-		.new(opts, {
-			layout_config = {
-				width = 0.65,
-				height = 0.7,
-			},
-			prompt_title = '[ Plugin directories ]',
-			finder = require('telescope.finders').new_table({
-				results = utils.get_os_command_output(opts.cmd),
-				entry_maker = opts.entry_maker,
-			}),
-			sorter = require('telescope.sorters').get_fuzzy_file(),
-			previewer = require('telescope.previewers.term_previewer').cat.new(opts),
-			attach_mappings = function(prompt_bufnr)
-				actions.select_default:replace(function()
-					local entry = require('telescope.actions.state').get_selected_entry()
-					actions.close(prompt_bufnr)
-					vim.defer_fn(function()
-						vim.cmd.lcd(entry.value)
-					end, 300)
-				end)
-				return true
-			end,
-		})
-		:find()
+			.new(opts, {
+				layout_config = {
+					width = 0.65,
+					height = 0.7,
+				},
+				prompt_title = '[ Plugin directories ]',
+				finder = require('telescope.finders').new_table({
+					results = utils.get_os_command_output(opts.cmd),
+					entry_maker = opts.entry_maker,
+				}),
+				sorter = require('telescope.sorters').get_fuzzy_file(),
+				previewer = require('telescope.previewers.term_previewer').cat.new(opts),
+				attach_mappings = function(prompt_bufnr)
+					actions.select_default:replace(function()
+						local entry = require('telescope.actions.state').get_selected_entry()
+						actions.close(prompt_bufnr)
+						vim.defer_fn(function()
+							vim.cmd.lcd(entry.value)
+						end, 300)
+					end)
+					return true
+				end,
+			})
+			:find()
 end
 
 -- Custom window-sizes
@@ -151,48 +151,61 @@ return {
 			'jvgrootveld/telescope-zoxide',
 			'folke/todo-comments.nvim',
 			'rafi/telescope-thesaurus.nvim',
+
+			{
+				"nvim-telescope/telescope-fzf-native.nvim",
+				build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && "
+						.. "cmake --build build --config Release && "
+						.. "cmake --install build --prefix build"
+			}
 		},
 		config = function(_, opts)
 			require('telescope').setup(opts)
 			require('telescope').load_extension('persisted')
+			require('telescope').load_extension('fzf')
 		end,
 		-- stylua: ignore
 		keys = {
 			-- General pickers
-			{ '<localleader>r', '<cmd>Telescope resume initial_mode=normal<CR>', desc = 'Resume last' },
-			{ '<localleader>R', '<cmd>Telescope pickers<CR>', desc = 'Pickers' },
-			{ '<localleader>f', '<cmd>Telescope find_files<CR>', desc = 'Find files' },
-			{ '<localleader>g', '<cmd>Telescope live_grep<CR>', desc = 'Grep' },
-			{ '<localleader>b', '<cmd>Telescope buffers show_all_buffers=true<CR>', desc = 'Buffers' },
-			{ '<localleader>h', '<cmd>Telescope highlights<CR>', desc = 'Highlights' },
-			{ '<localleader>j', '<cmd>Telescope jumplist<CR>', desc = 'Jump list' },
-			{ '<localleader>m', '<cmd>Telescope marks<CR>', desc = 'Marks' },
-			{ '<localleader>o', '<cmd>Telescope vim_options<CR>', desc = 'Neovim options' },
-			{ '<localleader>t', '<cmd>Telescope lsp_dynamic_workspace_symbols<CR>', desc = 'Workspace symbols' },
-			{ '<localleader>v', '<cmd>Telescope registers<CR>', desc = 'Registers' },
-			{ '<localleader>u', '<cmd>Telescope spell_suggest<CR>', desc = 'Spell suggest' },
-			{ '<localleader>s', '<cmd>Telescope persisted<CR>', desc = 'Sessions' },
-			{ '<localleader>x', '<cmd>Telescope oldfiles<CR>', desc = 'Old files' },
-			{ '<localleader>;', '<cmd>Telescope command_history<CR>', desc = 'Command history' },
-			{ '<localleader>:', '<cmd>Telescope commands<CR>', desc = 'Commands' },
-			{ '<localleader>/', '<cmd>Telescope search_history<CR>', desc = 'Search history' },
-			{ '<leader>/', '<cmd>Telescope current_buffer_fuzzy_find<CR>', desc = 'Buffer find' },
-
-			{ '<leader>sd', '<cmd>Telescope diagnostics bufnr=0<CR>', desc = 'Document diagnostics' },
-			{ '<leader>sD', '<cmd>Telescope diagnostics<CR>', desc = 'Workspace diagnostics' },
-			{ '<leader>sh', '<cmd>Telescope help_tags<CR>', desc = 'Help Pages' },
-			{ '<leader>sk', '<cmd>Telescope keymaps<CR>', desc = 'Key Maps' },
-			{ '<leader>sm', '<cmd>Telescope man_pages<CR>', desc = 'Man Pages' },
-			{ '<leader>sw', '<cmd>Telescope grep_string<CR>', desc = 'Word' },
-			{ '<leader>sc', '<cmd>Telescope colorscheme<CR>', desc = 'Colorscheme' },
-			{ '<leader>uC', '<cmd>Telescope colorscheme<CR>', desc = 'Colorscheme' },
+			{ '<localleader>r',  '<cmd>Telescope resume initial_mode=normal<CR>',    desc = 'Resume last' },
+			{ '<localleader>R',  '<cmd>Telescope pickers<CR>',                       desc = 'Pickers' },
+			{ '<localleader>f',  '<cmd>Telescope find_files<CR>',                    desc = 'Find files' },
+			{ '<localleader>g',  '<cmd>Telescope live_grep<CR>',                     desc = 'Grep' },
+			{ '<localleader>b',  '<cmd>Telescope buffers show_all_buffers=true<CR>', desc = 'Buffers' },
+			{ '<localleader>h',  '<cmd>Telescope highlights<CR>',                    desc = 'Highlights' },
+			{ '<localleader>j',  '<cmd>Telescope jumplist<CR>',                      desc = 'Jump list' },
+			{ '<localleader>m',  '<cmd>Telescope marks<CR>',                         desc = 'Marks' },
+			{ '<localleader>o',  '<cmd>Telescope vim_options<CR>',                   desc = 'Neovim options' },
+			{ '<localleader>t',  '<cmd>Telescope lsp_dynamic_workspace_symbols<CR>', desc = 'Workspace symbols' },
+			{ '<localleader>v',  '<cmd>Telescope registers<CR>',                     desc = 'Registers' },
+			{ '<localleader>u',  '<cmd>Telescope spell_suggest<CR>',                 desc = 'Spell suggest' },
+			{ '<localleader>s',  '<cmd>Telescope persisted<CR>',                     desc = 'Sessions' },
+			-- { '<localleader>x',  '<cmd>Telescope oldfiles<CR>',                      desc = 'Old files' },
+			{ '<localleader>hc',  '<cmd>Telescope command_history<CR>',               desc = 'Command history' },
+			{ '<localleader>:',  '<cmd>Telescope commands<CR>',                      desc = 'Commands' },
+			{ '<localleader>/',  '<cmd>Telescope search_history<CR>',                desc = 'Search history' },
+			{ '<leader>/',       '<cmd>Telescope current_buffer_fuzzy_find<CR>',     desc = 'Buffer find' },
+			{ '<leader>sd',      '<cmd>Telescope diagnostics bufnr=0<CR>',           desc = 'Document diagnostics' },
+			{ '<leader>sD',      '<cmd>Telescope diagnostics<CR>',                   desc = 'Workspace diagnostics' },
+			{ '<leader>sh',      '<cmd>Telescope help_tags<CR>',                     desc = 'Help Pages' },
+			{ '<leader>sk',      '<cmd>Telescope keymaps<CR>',                       desc = 'Key Maps' },
+			{ '<leader>sm',      '<cmd>Telescope man_pages<CR>',                     desc = 'Man Pages' },
+			{ '<leader>sw',      '<cmd>Telescope grep_string<CR>',                   desc = 'Word' },
+			{ '<leader>sc',      '<cmd>Telescope colorscheme<CR>',                   desc = 'Colorscheme' },
+			{ '<leader>uC',      '<cmd>Telescope colorscheme<CR>',                   desc = 'Colorscheme' },
 
 			-- LSP related
-			{ '<localleader>dd', '<cmd>Telescope lsp_definitions<CR>', desc = 'Definitions' },
-			{ '<localleader>di', '<cmd>Telescope lsp_implementations<CR>', desc = 'Implementations' },
-			{ '<localleader>dr', '<cmd>Telescope lsp_references<CR>', desc = 'References' },
-			{ '<localleader>da', '<cmd>Telescope lsp_code_actions<CR>', desc = 'Code actions' },
-			{ '<localleader>da', ':Telescope lsp_range_code_actions<CR>', mode = 'x', desc = 'Code actions' },
+			{ '<localleader>dd', '<cmd>Telescope lsp_definitions<CR>',               desc = 'Definitions' },
+			{ '<localleader>di', '<cmd>Telescope lsp_implementations<CR>',           desc = 'Implementations' },
+			{ '<localleader>dr', '<cmd>Telescope lsp_references<CR>',                desc = 'References' },
+			{ '<localleader>da', '<cmd>Telescope lsp_code_actions<CR>',              desc = 'Code actions' },
+			{
+				'<localleader>da',
+				':Telescope lsp_range_code_actions<CR>',
+				mode = 'x',
+				desc =
+				'Code actions'
+			},
 			{
 				'<leader>ss',
 				function()
@@ -235,16 +248,16 @@ return {
 			},
 
 			-- Git
-			{ '<leader>gs', '<cmd>Telescope git_status<CR>', desc = 'Git status' },
-			{ '<leader>gr', '<cmd>Telescope git_branches<CR>', desc = 'Git branches' },
-			{ '<leader>gl', '<cmd>Telescope git_commits<CR>', desc = 'Git commits' },
-			{ '<leader>gL', '<cmd>Telescope git_bcommits<CR>', desc = 'Git buffer commits' },
-			{ '<leader>gh', '<cmd>Telescope git_stash<CR>', desc = 'Git stashes' },
+			{ '<leader>gs',     '<cmd>Telescope git_status<CR>',       desc = 'Git status' },
+			{ '<leader>gr',     '<cmd>Telescope git_branches<CR>',     desc = 'Git branches' },
+			{ '<leader>gl',     '<cmd>Telescope git_commits<CR>',      desc = 'Git commits' },
+			{ '<leader>gL',     '<cmd>Telescope git_bcommits<CR>',     desc = 'Git buffer commits' },
+			{ '<leader>gh',     '<cmd>Telescope git_stash<CR>',        desc = 'Git stashes' },
 
 			-- Plugins
-			{ '<localleader>n', plugin_directories, desc = 'Plugins' },
+			{ '<localleader>n', plugin_directories,                    desc = 'Plugins' },
 			{ '<localleader>k', '<cmd>Telescope thesaurus lookup<CR>', desc = 'Thesaurus' },
-			{ '<localleader>w', '<cmd>ZkNotes<CR>', desc = 'Zk notes' },
+			{ '<localleader>w', '<cmd>ZkNotes<CR>',                    desc = 'Zk notes' },
 
 			{
 				'<localleader>z',
@@ -276,15 +289,15 @@ return {
 				desc = 'Find file',
 			},
 			{
-				'<leader>gg',"<cmd>tab G<CR>", desc = 'Git',
+				'<leader>gg', "<cmd>tab Neogit<CR>", desc = 'Git',
 			},
 
 			{
-				';r',"<cmd>Telescope live_grep<CR>", desc = 'serach string',
+				';r', "<cmd>Telescope live_grep<CR>", desc = 'serach string',
 			},
 
 			{
-				';fg',"<cmd>Telescope git_status<CR>", desc = 'serach string',
+				';fg', "<cmd>Telescope git_status<CR>", desc = 'serach string',
 			},
 			-- {
 			-- 	'<leader>gg', function()
@@ -336,7 +349,8 @@ return {
 				'!**/.git/*',
 			}
 
-			return {
+
+			local R = {
 				defaults = {
 					sorting_strategy = 'ascending',
 					cache_picker = { num_pickers = 3 },
@@ -379,44 +393,44 @@ return {
 						},
 
 						n = {
-							['q']     = actions.close,
-							['<Esc>'] = actions.close,
+							['q']       = actions.close,
+							['<Esc>']   = actions.close,
 
-							['<Tab>'] = actions.move_selection_worse,
+							['<Tab>']   = actions.move_selection_worse,
 							['<S-Tab>'] = actions.move_selection_better,
-							['<C-u>'] = myactions.results_scrolling_up,
-							['<C-d>'] = myactions.results_scrolling_down,
+							['<C-u>']   = myactions.results_scrolling_up,
+							['<C-d>']   = myactions.results_scrolling_down,
 
-							['<C-b>'] = actions.preview_scrolling_up,
-							['<C-f>'] = actions.preview_scrolling_down,
+							['<C-b>']   = actions.preview_scrolling_up,
+							['<C-f>']   = actions.preview_scrolling_down,
 
-							['<C-n>'] = actions.cycle_history_next,
-							['<C-p>'] = actions.cycle_history_prev,
+							['<C-n>']   = actions.cycle_history_next,
+							['<C-p>']   = actions.cycle_history_prev,
 
-							['*'] = actions.toggle_all,
-							['u'] = actions.drop_all,
-							['J'] = actions.toggle_selection + actions.move_selection_next,
-							['K'] = actions.toggle_selection + actions.move_selection_previous,
-							[' '] = {
+							['*']       = actions.toggle_all,
+							['u']       = actions.drop_all,
+							['J']       = actions.toggle_selection + actions.move_selection_next,
+							['K']       = actions.toggle_selection + actions.move_selection_previous,
+							[' ']       = {
 								actions.toggle_selection + actions.move_selection_next,
 								type = 'action',
 								opts = { nowait = true },
 							},
 
-							['sv'] = actions.select_horizontal,
-							['sg'] = actions.select_vertical,
-							['st'] = actions.select_tab,
+							['sv']      = actions.select_horizontal,
+							['sg']      = actions.select_vertical,
+							['st']      = actions.select_tab,
 
-							['w'] = myactions.smart_send_to_qflist,
-							['e'] = myactions.send_to_qflist,
+							['w']       = myactions.smart_send_to_qflist,
+							['e']       = myactions.send_to_qflist,
 
-							['!'] = actions.edit_command_line,
+							['!']       = actions.edit_command_line,
 
-							['t'] = function(...)
+							['t']       = function(...)
 								return require('trouble.providers.telescope').open_with_trouble(...)
 							end,
 
-							['p'] = function()
+							['p']       = function()
 								local entry = require('telescope.actions.state').get_selected_entry()
 								require('rafi.lib.preview').open(entry.path)
 							end,
@@ -445,22 +459,22 @@ return {
 					},
 					colorscheme = {
 						enable_preview = true,
-						layout_config = { preview_width = 0.7 },
+						layout_config = { preview_width = 0.9 },
 					},
 					highlights = {
-						layout_config = { preview_width = 0.7 },
+						layout_config = { preview_width = 0.9 },
 					},
 					vim_options = {
 						theme = 'dropdown',
-						layout_config = { width = width_medium, height = 0.7 },
+						layout_config = { width = width_medium, height = 0.9 },
 					},
 					command_history = {
 						theme = 'dropdown',
-						layout_config = { width = width_medium, height = 0.7 },
+						layout_config = { width = width_medium, height = 0.9 },
 					},
 					search_history = {
 						theme = 'dropdown',
-						layout_config = { width = width_small, height = 0.6 },
+						layout_config = { width = width_small, height = 0.8 },
 					},
 					spell_suggest = {
 						theme = 'cursor',
@@ -511,16 +525,28 @@ return {
 								after_action = function(selection)
 									vim.notify(
 										"Current working directory set to '"
-											.. selection.path
-											.. "'",
+										.. selection.path
+										.. "'",
 										vim.log.levels.INFO
 									)
 								end,
 							},
 						},
 					},
+
+					fzf = {
+						fuzzy = true,             -- false will only do exact matching
+						override_generic_sorter = true, -- override the generic sorter
+						override_file_sorter = true, -- override the file sorter
+						case_mode = "smart_case", -- or "ignore_case" or "respect_case"
+						-- the default case_mode is "smart_case"
+					}
+
 				},
 			}
+
+
+			return R
 		end,
 	},
 }

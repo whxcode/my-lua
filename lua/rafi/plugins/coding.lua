@@ -47,11 +47,11 @@ return {
 				},
 				sources = cmp.config.sources({
 					{ name = 'nvim_lsp', priority = 50 },
-					{ name = 'path', priority = 40 },
-					{ name = 'luasnip', priority = 30 },
+					{ name = 'path',     priority = 40 },
+					{ name = 'luasnip',  priority = 30 },
 				}, {
 					{ name = 'buffer', priority = 50, keyword_length = 3 },
-					{ name = 'emoji', insert = true, priority = 20 },
+					{ name = 'emoji',  insert = true, priority = 20 },
 					{
 						name = 'tmux',
 						priority = 10,
@@ -137,8 +137,8 @@ return {
 		event = 'InsertEnter',
 		dependencies = { 'rafamadriz/friendly-snippets' },
 		build = (not jit.os:find('Windows'))
-			and "echo 'NOTE: jsregexp is optional, so not a big deal if it fails to build'; make install_jsregexp"
-			or nil,
+				and "echo 'NOTE: jsregexp is optional, so not a big deal if it fails to build'; make install_jsregexp"
+				or nil,
 		-- stylua: ignore
 		keys = {
 			{
@@ -192,46 +192,62 @@ return {
 	},
 
 	-----------------------------------------------------------------------------
-	{
-		'echasnovski/mini.pairs',
-		event = 'VeryLazy',
-		opts = {},
-	},
+	-- {
+	-- 	'echasnovski/mini.pairs',
+	-- 	event = 'VeryLazy',
+	-- 	opts = {},
+	-- },
 
 	-----------------------------------------------------------------------------
+	---
 	{
-		'echasnovski/mini.surround',
-		-- stylua: ignore
-		keys = function(_, keys)
-			-- Populate the keys based on the user's options
-			local plugin = require('lazy.core.config').spec.plugins['mini.surround']
-			local opts = require('lazy.core.plugin').values(plugin, 'opts', false)
-			local mappings = {
-				{ opts.mappings.add, desc = 'Add surrounding', mode = { 'n', 'x' } },
-				{ opts.mappings.delete, desc = 'Delete surrounding' },
-				{ opts.mappings.find, desc = 'Find right surrounding' },
-				{ opts.mappings.find_left, desc = 'Find left surrounding' },
-				{ opts.mappings.highlight, desc = 'Highlight surrounding' },
-				{ opts.mappings.replace, desc = 'Replace surrounding' },
-				{ opts.mappings.update_n_lines, desc = 'Update `MiniSurround.config.n_lines`' },
-			}
-			mappings = vim.tbl_filter(function(m)
-				return m[1] and #m[1] > 0
-			end, mappings)
-			return vim.list_extend(mappings, keys)
-		end,
-		opts = {
-			mappings = {
-				add = 'sa', -- Add surrounding in Normal and Visual modes
-				delete = 'ds', -- Delete surrounding
-				find = 'gzf', -- Find surrounding (to the right)
-				find_left = 'gzF', -- Find surrounding (to the left)
-				highlight = 'gzh', -- Highlight surrounding
-				replace = 'cs', -- Replace surrounding
-				update_n_lines = 'gzn', -- Update `n_lines`
-			},
-		},
+		"kylechui/nvim-surround",
+		version = "*", -- Use for stability; omit to use `main` branch for the latest features
+		event = "VeryLazy",
+		config = function()
+			require("nvim-surround").setup({
+				-- Configuration here, or leave empty to use defaults
+			})
+		end
 	},
+	{
+		'windwp/nvim-autopairs', event = "InsertEnter", opts = {} -- this is equalent to setup({}) function
+	},
+
+
+	-- {
+	-- 	'echasnovski/mini.surround',
+	-- 	-- stylua: ignore
+	-- 	keys = function(_, keys)
+	-- 		-- Populate the keys based on the user's options
+	-- 		local plugin = require('lazy.core.config').spec.plugins['mini.surround']
+	-- 		local opts = require('lazy.core.plugin').values(plugin, 'opts', false)
+	-- 		local mappings = {
+	-- 			{ opts.mappings.add, desc = 'Add surrounding', mode = { 'n', 'x' } },
+	-- 			{ opts.mappings.delete, desc = 'Delete surrounding' },
+	-- 			{ opts.mappings.find, desc = 'Find right surrounding' },
+	-- 			{ opts.mappings.find_left, desc = 'Find left surrounding' },
+	-- 			{ opts.mappings.highlight, desc = 'Highlight surrounding' },
+	-- 			{ opts.mappings.replace, desc = 'Replace surrounding' },
+	-- 			{ opts.mappings.update_n_lines, desc = 'Update `MiniSurround.config.n_lines`' },
+	-- 		}
+	-- 		mappings = vim.tbl_filter(function(m)
+	-- 			return m[1] and #m[1] > 0
+	-- 		end, mappings)
+	-- 		return vim.list_extend(mappings, keys)
+	-- 	end,
+	-- 	opts = {
+	-- 		mappings = {
+	-- 			add = 'sa', -- Add surrounding in Normal and Visual modes
+	-- 			delete = 'ds', -- Delete surrounding
+	-- 			find = 'gzf', -- Find surrounding (to the right)
+	-- 			find_left = 'gzF', -- Find surrounding (to the left)
+	-- 			highlight = 'gzh', -- Highlight surrounding
+	-- 			replace = 'cs', -- Replace surrounding
+	-- 			update_n_lines = 'gzn', -- Update `n_lines`
+	-- 		},
+	-- 	},
+	-- },
 
 	-----------------------------------------------------------------------------
 	{
@@ -240,13 +256,13 @@ return {
 		dependencies = { 'JoosepAlviste/nvim-ts-context-commentstring' },
 		keys = {
 			{ '<Leader>v', 'gcc', remap = true, silent = true, mode = 'n' },
-			{ '<Leader>v', 'gc', remap = true, silent = true, mode = 'x' },
+			{ '<Leader>v', 'gc',  remap = true, silent = true, mode = 'x' },
 		},
 		opts = {
 			options = {
 				custom_commentstring = function()
 					return require('ts_context_commentstring.internal').calculate_commentstring()
-						or vim.bo.commentstring
+							or vim.bo.commentstring
 				end,
 			},
 		},
@@ -306,9 +322,9 @@ return {
 		'AndrewRadev/linediff.vim',
 		cmd = { 'Linediff', 'LinediffAdd' },
 		keys = {
-			{ '<Leader>mdf', ':Linediff<CR>', mode = 'x', desc = 'Line diff' },
-			{ '<Leader>mda', ':LinediffAdd<CR>', mode = 'x', desc = 'Line diff add' },
-			{ '<Leader>mds', '<cmd>LinediffShow<CR>', desc = 'Line diff show' },
+			{ '<Leader>mdf', ':Linediff<CR>',          mode = 'x',              desc = 'Line diff' },
+			{ '<Leader>mda', ':LinediffAdd<CR>',       mode = 'x',              desc = 'Line diff add' },
+			{ '<Leader>mds', '<cmd>LinediffShow<CR>',  desc = 'Line diff show' },
 			{ '<Leader>mdr', '<cmd>LinediffReset<CR>', desc = 'Line diff reset' },
 		},
 	},

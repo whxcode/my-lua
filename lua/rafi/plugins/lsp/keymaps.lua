@@ -17,49 +17,98 @@ function M.get()
 
 	---@class PluginLspKeys
 	-- stylua: ignore
-	M._keys =  {
-		{ 'gD', vim.lsp.buf.declaration, desc = 'Goto Declaration', has = 'declaration' },
+	M._keys = {
+		{
+			'gD',
+			vim.lsp.buf.declaration,
+			desc = 'Goto Declaration',
+			has =
+			'declaration'
+		},
 		{ 'gd', vim.lsp.buf.definition, desc = 'Goto Definition', has = 'definition' },
-		{ 'gr', vim.lsp.buf.references, desc = 'References', has = 'references' },
-		{ 'gy', vim.lsp.buf.type_definition, desc = 'Goto Type Definition', has = 'typeDefinition' },
-		{ 'gi', vim.lsp.buf.implementation, desc = 'Goto Implementation', has = 'implementation' },
-		{ 'gK', vim.lsp.buf.signature_help, desc = 'Signature Help', has = 'signatureHelp' },
-		{ '<C-g>h', vim.lsp.buf.signature_help, mode = 'i', desc = 'Signature Help', has = 'signatureHelp' },
-		{ ']d', M.diagnostic_goto(true), desc = 'Next Diagnostic' },
-		{ '[d', M.diagnostic_goto(false), desc = 'Prev Diagnostic' },
-		{ ']e', M.diagnostic_goto(true, 'ERROR'), desc = 'Next Error' },
-		{ '[e', M.diagnostic_goto(false, 'ERROR'), desc = 'Prev Error' },
-
-		{ ',wa', vim.lsp.buf.add_workspace_folder, desc = 'Show Workspace Folders' },
-		{ ',wr', vim.lsp.buf.remove_workspace_folder, desc = 'Remove Workspace Folder' },
+		{ 'gq', vim.lsp.buf.format,     desc = 'format',          has = 'definition' },
+		{ 'gr', "<cmd>Telescope lsp_references<CR>", desc = 'References',      has = 'references' },
+		{
+			'gy',
+			vim.lsp.buf.type_definition,
+			desc = 'Goto Type Definition',
+			has =
+			'typeDefinition'
+		},
+		{
+			'gi',
+			vim.lsp.buf.implementation,
+			desc = 'Goto Implementation',
+			has =
+			'implementation'
+		},
+		{
+			'gK',
+			vim.lsp.buf.signature_help,
+			desc = 'Signature Help',
+			has =
+			'signatureHelp'
+		},
+		{
+			'<C-g>h',
+			vim.lsp.buf.signature_help,
+			mode = 'i',
+			desc =
+			'Signature Help',
+			has =
+			'signatureHelp'
+		},
+		{ ']d',  M.diagnostic_goto(true),                              desc = 'Next Diagnostic' },
+		{ '[d',  M.diagnostic_goto(false),                             desc = 'Prev Diagnostic' },
+		{ ']e',  M.diagnostic_goto(true, 'ERROR'),                     desc = 'Next Error' },
+		{ '[e',  M.diagnostic_goto(false, 'ERROR'),                    desc = 'Prev Error' },
+		{ ',wa', vim.lsp.buf.add_workspace_folder,                     desc = 'Show Workspace Folders' },
+		{ ',wr', vim.lsp.buf.remove_workspace_folder,                  desc = 'Remove Workspace Folder' },
 		{ ',wl', '<cmd>lua =vim.lsp.buf.list_workspace_folders()<CR>', desc = 'List Workspace Folders' },
-
 		{ 'K', function()
 			-- Show hover documentation or folded lines.
 			local winid = require('rafi.lib.utils').has('nvim-ufo')
-				and require('ufo').peekFoldedLinesUnderCursor() or nil
+					and require('ufo').peekFoldedLinesUnderCursor() or nil
 			if not winid then
 				vim.lsp.buf.hover()
 			end
 		end },
 
 		{ '<Leader>ud', function() M.diagnostic_toggle(false) end, desc = 'Disable Diagnostics' },
-		{ '<Leader>uD', function() M.diagnostic_toggle(true) end, desc = 'Disable All Diagnostics' },
-
+		{ '<Leader>uD', function() M.diagnostic_toggle(true) end,  desc = 'Disable All Diagnostics' },
 		{ '<leader>cl', '<cmd>LspInfo<cr>' },
-		{ '<leader>cf', format, desc = 'Format Document', has = 'formatting' },
-		{ '<leader>cf', format, mode = 'x', desc = 'Format Range', has = 'rangeFormatting' },
-		{ '<Leader>cr', vim.lsp.buf.rename, desc = 'Rename', has = 'rename' },
+		{ '<leader>cf', format,                                    desc = 'Format Document',        has = 'formatting' },
+		{
+			'<leader>cf',
+			format,
+			mode = 'x',
+			desc = 'Format Range',
+			has =
+			'rangeFormatting'
+		},
+		{ '<Leader>rn', vim.lsp.buf.rename,        desc = 'Rename',          has = 'rename' },
 		{ '<Leader>ce', vim.diagnostic.open_float, desc = 'Open diagnostics' },
-		{ '<Leader>ca', vim.lsp.buf.code_action, mode = { 'n', 'x' }, has = 'codeAction', desc = 'Code Action' },
-		{ '<Leader>cA', function()
-			vim.lsp.buf.code_action({
-				context = {
-					only = { 'source' },
-					diagnostics = {},
-				},
-			})
-		end, desc = 'Source Action', has = 'codeAction' },
+		{
+			'<Leader>ca',
+			vim.lsp.buf.code_action,
+			mode = { 'n', 'x' },
+			has = 'codeAction',
+			desc =
+			'Code Action'
+		},
+		{
+			'<Leader>cA',
+			function()
+				vim.lsp.buf.code_action({
+					context = {
+						only = { 'source' },
+						diagnostics = {},
+					},
+				})
+			end,
+			desc = 'Source Action',
+			has = 'codeAction'
+		},
 	}
 	return M._keys
 end

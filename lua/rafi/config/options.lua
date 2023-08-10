@@ -15,6 +15,7 @@ vim.g.maplocalleader = ';'
 local opt = vim.opt
 
 opt.mouse = 'nv'       -- Disable mouse in command-line mode
+opt.shell = 'zsh'       -- Disable mouse in command-line mode
 opt.errorbells = true  -- Trigger bell on error
 opt.visualbell = true  -- Use visual bell instead of beeping
 opt.hidden = true      -- Hide buffers when abandoned instead of unload

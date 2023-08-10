@@ -5,6 +5,8 @@
 -- This file is automatically loaded by rafi.config.init
 
 local Util = require('rafi.lib.utils')
+local Keys = require('rafi.lib.keys')
+
 local map = vim.keymap.set
 
 local function augroup(name)
@@ -161,7 +163,7 @@ map(
 	'x',
 	'<C-r>',
 	":<C-u>%s/\\V<C-R>=v:lua.require'rafi.lib.edit'.get_visual_selection()<CR>"
-		.. '//gc<Left><Left><Left>',
+	.. '//gc<Left><Left><Left>',
 	{ desc = 'Replace Selection' }
 )
 
@@ -279,7 +281,8 @@ map('n', '<LocalLeader>c', function()
 end, { desc = 'Content-aware menu' })
 
 -- Lazygit
-map('n', '<leader>tg', function() Util.float_term({ 'lazygit' }, { cwd = Util.get_root(), esc_esc = false }) end, { desc = 'Lazygit (root dir)' })
+map('n', '<leader>tg', function() Util.float_term({ 'lazygit' }, { cwd = Util.get_root(), esc_esc = false }) end,
+	{ desc = 'Lazygit (root dir)' })
 map('n', '<leader>tG', function() Util.float_term({ 'lazygit' }, { esc_esc = false }) end, { desc = 'Lazygit (cwd)' })
 
 -- Floating terminal
@@ -310,17 +313,26 @@ end
 --
 
 
+-- 自定义函数处理 q 键的行为
+local function handle_q()
+	local buf_count = vim.fn.bufnr('$')   -- 获取缓冲区数量
+
+	if buf_count > 1 then
+		vim.cmd('bdelete')     -- 关闭当前缓冲区
+	else
+		vim.cmd('q')           -- 退出 Vim
+	end
+end
+
+
+
 if vim.F.if_nil(vim.g.rafi_window_q_mapping, true) then
     vim.api.nvim_create_autocmd({ 'BufWinEnter', 'VimEnter' }, {
         group = augroup('quit_mapping'),
         callback = function(event)
             if vim.bo.buftype == '' and vim.fn.maparg('q', 'n') == '' then
-							local c =#vim.api.nvim_list_bufs()
-                if c == 1 then
-                    map('n', 'q', '<cmd>quit<CR>', {})
-                else
+                  map('n', 'q', '<cmd>quit<CR>', {})
                     --map('n', 'q', '<Cmd>BufferClose<CR>', {})
-                end
             end
         end,
     })
@@ -344,7 +356,7 @@ map('n', '<C-x>', '<C-w>x', { remap = true, desc = 'Swap windows' })
 
 map('n', 'sb', '<cmd>buffer#<CR>', { desc = 'Alternate buffer' })
 map('n', 'sc', '<cmd>close<CR>', { desc = 'Close window' })
-map('n', 'sd', '<cmd>bdelete<CR>', { desc = 'Buffer delete' })
+--map('n', 'sd', '<cmd>bdelete<CR>', { desc = 'Buffer delete' })
 map('n', 'sv', '<cmd>split<CR>', { desc = 'Split window horizontally' })
 map('n', 'sg', '<cmd>vsplit<CR>', { desc = 'Split window vertically' })
 map('n', 'st', '<cmd>tabnew<CR>', { desc = 'New tab' })
@@ -364,3 +376,5 @@ map('n', 'sh', function()
 		vim.o.background = 'dark'
 	end
 end, { desc = 'Toggle background dark/light' })
+
+map('n', ';;', ':', { desc ="enter command mode" })
