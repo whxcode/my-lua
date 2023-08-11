@@ -25,8 +25,8 @@ function M.get()
 			has =
 			'declaration'
 		},
-		{ 'gd', vim.lsp.buf.definition, desc = 'Goto Definition', has = 'definition' },
-		{ 'gq', vim.lsp.buf.format,     desc = 'format',          has = 'definition' },
+		{ 'gd', "<cmd>Telescope lsp_definitions<CR>",              desc = 'Goto Definition', has = 'definition' },
+		{ 'gq', vim.lsp.buf.format,                  desc = 'format',          has = 'definition' },
 		{ 'gr', "<cmd>Telescope lsp_references<CR>", desc = 'References',      has = 'references' },
 		{
 			'gy',
