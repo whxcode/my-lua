@@ -37,8 +37,8 @@ map({ 'n', 'x' }, 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true
 map('n', 'gh', 'g^')
 map('n', 'gl', 'g$')
 
-map('n', '<Leader><Leader>', 'V', { desc = 'Visual Mode' })
-map('x', '<Leader><Leader>', '<Esc>', { desc = 'Exit Visual Mode' })
+map('n', ';;', 'V', { desc = 'Visual Mode' })
+map('x', ';;', '<Esc>', { desc = 'Exit Visual Mode' })
 
 -- Toggle fold or select option from popup menu
 ---@return string

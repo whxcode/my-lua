@@ -167,9 +167,8 @@ return {
 		-- stylua: ignore
 		keys = {
 			-- General pickers
-			{ '<localleader>r',  '<cmd>Telescope resume initial_mode=normal<CR>',    desc = 'Resume last' },
 			{ '<localleader>R',  '<cmd>Telescope pickers<CR>',                       desc = 'Pickers' },
-			{ '<localleader>f',  '<cmd>Telescope find_files<CR>',                    desc = 'Find files' },
+			{ '<leader><leader>',  '<cmd>Telescope find_files<CR>',                    desc = 'Find files' },
 			{ '<localleader>g',  '<cmd>Telescope live_grep<CR>',                     desc = 'Grep' },
 			{ '<localleader>b',  '<cmd>Telescope buffers show_all_buffers=true<CR>', desc = 'Buffers' },
 			{ '<localleader>h',  '<cmd>Telescope highlights<CR>',                    desc = 'Highlights' },
@@ -278,15 +277,6 @@ return {
 					})
 				end,
 				desc = 'Find symbol',
-			},
-			{
-				'<leader>gf',
-				function()
-					require('telescope.builtin').find_files({
-						default_text = vim.fn.expand('<cword>'),
-					})
-				end,
-				desc = 'Find file',
 			},
 			{
 				'<leader>gg', "<cmd>tab Neogit<CR>", desc = 'Git',
