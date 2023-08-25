@@ -66,10 +66,22 @@ let g:spelunker_check_type = 2
 
 set nospell
 
+
+highlight DiffAdd guifg=green guibg=NONE
+highlight DiffChange guifg=yellow guibg=NONE
+highlight DiffDelete guifg=red guibg=NONE
+
 ]])
 -- vim.api.nvim_set_keymap('n', ';;', ':', {  })
 
 config.setup()
 -- Enjoy!
 --
-
+-- 配置 Neogit 显示行号
+require'neogit'.setup {
+    integrations = {
+        diffview = true,
+    },
+    -- 自定义 diff 渲染器
+    custom_diff_renderer = { line_numbers = true },
+}

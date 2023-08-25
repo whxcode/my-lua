@@ -168,7 +168,17 @@ return {
 		keys = {
 			-- General pickers
 			{ '<localleader>R',  '<cmd>Telescope pickers<CR>',                       desc = 'Pickers' },
-			{ '<leader><leader>',  '<cmd>Telescope find_files<CR>',                    desc = 'Find files' },
+			{
+				'<leader><leader>',
+				'<cmd>Telescope find_files<CR>',
+				{
+					desc = 'Find files',
+					layout_config = {
+						-- height = 1,
+						--width = 1
+					}
+				}
+			},
 			{ '<localleader>g',  '<cmd>Telescope live_grep<CR>',                     desc = 'Grep' },
 			{ '<localleader>b',  '<cmd>Telescope buffers show_all_buffers=true<CR>', desc = 'Buffers' },
 			{ '<localleader>h',  '<cmd>Telescope highlights<CR>',                    desc = 'Highlights' },
@@ -180,7 +190,7 @@ return {
 			{ '<localleader>u',  '<cmd>Telescope spell_suggest<CR>',                 desc = 'Spell suggest' },
 			{ '<localleader>s',  '<cmd>Telescope persisted<CR>',                     desc = 'Sessions' },
 			-- { '<localleader>x',  '<cmd>Telescope oldfiles<CR>',                      desc = 'Old files' },
-			{ '<localleader>hc',  '<cmd>Telescope command_history<CR>',               desc = 'Command history' },
+			{ '<localleader>hc', '<cmd>Telescope command_history<CR>',               desc = 'Command history' },
 			{ '<localleader>:',  '<cmd>Telescope commands<CR>',                      desc = 'Commands' },
 			{ '<localleader>/',  '<cmd>Telescope search_history<CR>',                desc = 'Search history' },
 			{ '<leader>/',       '<cmd>Telescope current_buffer_fuzzy_find<CR>',     desc = 'Buffer find' },
@@ -189,7 +199,7 @@ return {
 			{ '<leader>sh',      '<cmd>Telescope help_tags<CR>',                     desc = 'Help Pages' },
 			{ '<leader>sk',      '<cmd>Telescope keymaps<CR>',                       desc = 'Key Maps' },
 			{ '<leader>sm',      '<cmd>Telescope man_pages<CR>',                     desc = 'Man Pages' },
-			{ '<leader>sw',      '<cmd>Telescope grep_string<CR>',                   desc = 'Word' },
+			--{ '<leader>rr',      '<cmd>Telescope grep_string<CR>',                   desc = 'Word' },
 			{ '<leader>sc',      '<cmd>Telescope colorscheme<CR>',                   desc = 'Colorscheme' },
 			{ '<leader>uC',      '<cmd>Telescope colorscheme<CR>',                   desc = 'Colorscheme' },
 
@@ -283,11 +293,12 @@ return {
 			},
 
 			{
-				';r', "<cmd>Telescope live_grep<CR>", desc = 'serach string',
+				'<leader>r', "<cmd>Telescope live_grep<CR>", desc = 'serach string',
 			},
 
+
 			{
-				';fg', "<cmd>Telescope git_status<CR>", desc = 'serach string',
+				'<leader>fg', "<cmd>Telescope git_status<CR>", desc = 'serach string',
 			},
 			-- {
 			-- 	'<leader>gg', function()
@@ -359,6 +370,7 @@ return {
 						prompt_position = 'top',
 						horizontal = {
 							height = 0.85,
+							width = 0.9,
 						},
 					},
 
@@ -442,10 +454,13 @@ return {
 						},
 					},
 					find_files = {
+						dynamic_preview_title = true,
 						find_command = has_ripgrep and find_args or nil,
+						layout_config = { width = 0.95, height = 0.95 },
 					},
 					live_grep = {
 						dynamic_preview_title = true,
+						layout_config = { width = 0.95, height = 0.95 },
 					},
 					colorscheme = {
 						enable_preview = true,

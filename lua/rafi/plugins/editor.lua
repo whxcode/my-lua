@@ -6,9 +6,9 @@ local is_windows = vim.loop.os_uname().sysname == 'Windows_NT'
 return {
 
 	-----------------------------------------------------------------------------
-	{ 'nmac427/guess-indent.nvim', lazy = false, priority = 50, config = true },
-	{ 'tweekmonster/helpful.vim', cmd = 'HelpfulVersion' },
-	{ 'lambdalisue/suda.vim', event = 'BufRead' },
+	{ 'nmac427/guess-indent.nvim', lazy = false,          priority = 50, config = true },
+	{ 'tweekmonster/helpful.vim',  cmd = 'HelpfulVersion' },
+	{ 'lambdalisue/suda.vim',      event = 'BufRead' },
 
 	-----------------------------------------------------------------------------
 	{
@@ -17,9 +17,9 @@ return {
 		cond = not is_windows,
 		-- stylua: ignore
 		keys = {
-			{ '<C-h>', '<cmd>TmuxNavigateLeft<CR>', mode = { 'n', 't' }, silent = true, desc = 'Jump to left pane' },
-			{ '<C-j>', '<cmd>TmuxNavigateDown<CR>', mode = { 'n', 't' }, silent = true, desc = 'Jump to lower pane' },
-			{ '<C-k>', '<cmd>TmuxNavigateUp<CR>', mode = { 'n', 't' }, silent = true, desc = 'Jump to upper pane' },
+			{ '<C-h>', '<cmd>TmuxNavigateLeft<CR>',  mode = { 'n', 't' }, silent = true, desc = 'Jump to left pane' },
+			{ '<C-j>', '<cmd>TmuxNavigateDown<CR>',  mode = { 'n', 't' }, silent = true, desc = 'Jump to lower pane' },
+			{ '<C-k>', '<cmd>TmuxNavigateUp<CR>',    mode = { 'n', 't' }, silent = true, desc = 'Jump to upper pane' },
 			{ '<C-l>', '<cmd>TmuxNavigateRight<CR>', mode = { 'n', 't' }, silent = true, desc = 'Jump to right pane' },
 		},
 		init = function()
@@ -189,7 +189,7 @@ return {
 		'ggandor/leap.nvim',
 		-- stylua: ignore
 		keys = {
-			{ 'ss', '<Plug>(leap-forward-to)', mode = { 'n', 'x', 'o' }, desc = 'Leap forward to' },
+			{ 'ss', '<Plug>(leap-forward-to)',  mode = { 'n', 'x', 'o' }, desc = 'Leap forward to' },
 			{ 'sS', '<Plug>(leap-backward-to)', mode = { 'n', 'x', 'o' }, desc = 'Leap backward to' },
 			{ 'SS', '<Plug>(leap-from-window)', mode = { 'n', 'x', 'o' }, desc = 'Leap from windows' },
 		},
@@ -275,8 +275,8 @@ return {
 		cmd = 'Registers',
 		keys = {
 			{ '<C-r>', mode = 'i', desc = 'Reveal registers' },
-			{ '"', mode = 'n', desc = 'Reveal registers' },
-			{ '"', mode = 'x', desc = 'Reveal registers' },
+			{ '"',     mode = 'n', desc = 'Reveal registers' },
+			{ '"',     mode = 'x', desc = 'Reveal registers' },
 		},
 		opts = { window = { border = 'rounded' } },
 	},
@@ -287,13 +287,13 @@ return {
 		dependencies = 'nvim-telescope/telescope.nvim',
 		-- stylua: ignore
 		keys = {
-			{ ']t', function() require('todo-comments').jump_next() end, desc = 'Next todo comment' },
-			{ '[t', function() require('todo-comments').jump_prev() end, desc = 'Previous todo comment' },
-			{ '<LocalLeader>dt', '<cmd>TodoTelescope<CR>', desc = 'todo' },
-			{ '<leader>xt', '<cmd>TodoTrouble<CR>', desc = 'Todo (Trouble)' },
-			{ '<leader>xT', '<cmd>TodoTrouble keywords=TODO,FIX,FIXME<cr>', desc = 'Todo/Fix/Fixme (Trouble)' },
-			{ '<leader>st', '<cmd>TodoTelescope<cr>', desc = 'Todo' },
-			{ '<leader>sT', '<cmd>TodoTelescope keywords=TODO,FIX,FIXME<cr>', desc = 'Todo/Fix/Fixme' },
+			{ ']t',              function() require('todo-comments').jump_next() end, desc = 'Next todo comment' },
+			{ '[t',              function() require('todo-comments').jump_prev() end, desc = 'Previous todo comment' },
+			{ '<LocalLeader>dt', '<cmd>TodoTelescope<CR>',                            desc = 'todo' },
+			{ '<leader>xt',      '<cmd>TodoTrouble<CR>',                              desc = 'Todo (Trouble)' },
+			{ '<leader>xT',      '<cmd>TodoTrouble keywords=TODO,FIX,FIXME<cr>',      desc = 'Todo/Fix/Fixme (Trouble)' },
+			{ '<leader>st',      '<cmd>TodoTelescope<cr>',                            desc = 'Todo' },
+			{ '<leader>sT',      '<cmd>TodoTelescope keywords=TODO,FIX,FIXME<cr>',    desc = 'Todo/Fix/Fixme' },
 		},
 		opts = { signs = false },
 	},
@@ -305,12 +305,14 @@ return {
 		opts = { use_diagnostic_signs = true },
 		-- stylua: ignore
 		keys = {
-			{ '<leader>e', '<cmd>TroubleToggle document_diagnostics<CR>', noremap = true, desc = 'Document Diagnostics' },
-			{ '<leader>r', '<cmd>TroubleToggle workspace_diagnostics<CR>', noremap = true, desc = 'Workspace Diagnostics' },
-			{ '<leader>xx', '<cmd>TroubleToggle document_diagnostics<cr>', desc = 'Document Diagnostics (Trouble)' },
+			{ '<leader>e',  '<cmd>TroubleToggle document_diagnostics<CR>',  noremap = true,                          desc =
+			'Document Diagnostics' },
+			{ ';r',         '<cmd>TroubleToggle workspace_diagnostics<CR>', noremap = true,                          desc =
+			'Workspace Diagnostics' },
+			{ '<leader>xx', '<cmd>TroubleToggle document_diagnostics<cr>',  desc = 'Document Diagnostics (Trouble)' },
 			{ '<leader>xX', '<cmd>TroubleToggle workspace_diagnostics<cr>', desc = 'Workspace Diagnostics (Trouble)' },
-			{ '<leader>xQ', '<cmd>TroubleToggle quickfix<cr>', desc = 'Quickfix List (Trouble)' },
-			{ '<leader>xL', '<cmd>TroubleToggle loclist<cr>', desc = 'Location List (Trouble)' },
+			{ '<leader>xQ', '<cmd>TroubleToggle quickfix<cr>',              desc = 'Quickfix List (Trouble)' },
+			{ '<leader>xL', '<cmd>TroubleToggle loclist<cr>',               desc = 'Location List (Trouble)' },
 			{
 				'[q',
 				function()
@@ -357,21 +359,21 @@ return {
 				enhanced_diff_hl = true, -- See ':h diffview-config-enhanced_diff_hl'
 				keymaps = {
 					view = {
-						{ 'n', 'q', '<cmd>DiffviewClose<CR>' },
-						{ 'n', '<Tab>', actions.select_next_entry },
-						{ 'n', '<S-Tab>', actions.select_prev_entry },
+						{ 'n', 'q',              '<cmd>DiffviewClose<CR>' },
+						{ 'n', '<Tab>',          actions.select_next_entry },
+						{ 'n', '<S-Tab>',        actions.select_prev_entry },
 						{ 'n', '<LocalLeader>a', actions.focus_files },
 						{ 'n', '<LocalLeader>e', actions.toggle_files },
 					},
 					file_panel = {
-						{ 'n', 'q', '<cmd>DiffviewClose<CR>' },
-						{ 'n', 'h', actions.prev_entry },
-						{ 'n', 'o', actions.focus_entry },
-						{ 'n', 'gf', actions.goto_file },
-						{ 'n', 'sg', actions.goto_file_split },
-						{ 'n', 'st', actions.goto_file_tab },
+						{ 'n', 'q',     '<cmd>DiffviewClose<CR>' },
+						{ 'n', 'h',     actions.prev_entry },
+						{ 'n', 'o',     actions.focus_entry },
+						{ 'n', 'gf',    actions.goto_file },
+						{ 'n', 'sg',    actions.goto_file_split },
+						{ 'n', 'st',    actions.goto_file_tab },
 						{ 'n', '<C-r>', actions.refresh_files },
-						{ 'n', ';e', actions.toggle_files },
+						{ 'n', ';e',    actions.toggle_files },
 					},
 					file_history_panel = {
 						{ 'n', 'q', '<cmd>DiffviewClose<CR>' },
@@ -462,7 +464,7 @@ return {
 			end
 
 			local mappings = {
-				{ '-', pick_window, desc = 'Pick window' },
+				{ '-',  pick_window, desc = 'Pick window' },
 				{ 'sp', pick_window, desc = 'Pick window' },
 				{ 'sw', swap_window, desc = 'Swap picked window' },
 			}
@@ -470,7 +472,7 @@ return {
 		end,
 		opts = {
 			hint = 'floating-big-letter',
-			show_prompt = false,
+			show_prompt = true,
 			filter_rules = {
 				include_current_win = true,
 				bo = {
@@ -478,6 +480,32 @@ return {
 					buftype = {},
 				},
 
+			},
+
+			picker_config = {
+				statusline_winbar_picker = {
+					-- You can change the display string in status bar.
+					-- It supports '%' printf style. Such as `return char .. ': %f'` to display
+					-- buffer file path. See :h 'stl' for details.
+					selection_display = function(char, windowid)
+						return '%=' .. char .. '%='
+					end,
+
+					-- whether you want to use winbar instead of the statusline
+					-- "always" means to always use winbar,
+					-- "never" means to never use winbar
+					-- "smart" means to use winbar if cmdheight=0 and statusline if cmdheight > 0
+					use_winbar = 'never',   -- "always" | "never" | "smart"
+				},
+
+				floating_big_letter = {
+					-- window picker plugin provides bunch of big letter fonts
+					-- fonts will be lazy loaded as they are being requested
+					-- additionally, user can pass in a table of fonts in to font
+					-- property to use instead
+
+					font = 'ansi-shadow',   -- ansi-shadow |
+				},
 			},
 		},
 	},
@@ -500,13 +528,16 @@ return {
 		cmd = { 'ZkNew', 'ZkNotes', 'ZkTags', 'ZkMatch' },
 		-- stylua: ignore
 		keys = {
-			{ '<leader>zn', "<Cmd>ZkNew { title = vim.fn.input('Title: ') }<CR>", desc = 'Zk New' },
-			{ '<leader>zo', "<Cmd>ZkNotes { sort = { 'modified' } }<CR>", desc = 'Zk Notes' },
-			{ '<leader>zt', '<Cmd>ZkTags<CR>', desc = 'Zk Tags' },
+			{ '<leader>zn', "<Cmd>ZkNew { title = vim.fn.input('Title: ') }<CR>",                           desc = 'Zk New' },
+			{ '<leader>zo', "<Cmd>ZkNotes { sort = { 'modified' } }<CR>",                                   desc = 'Zk Notes' },
+			{ '<leader>zt', '<Cmd>ZkTags<CR>',                                                              desc = 'Zk Tags' },
 			{ '<leader>zf', "<Cmd>ZkNotes { sort = { 'modified' }, match = vim.fn.input('Search: ') }<CR>", desc = 'Zk Search' },
-			{ '<leader>zf', ":'<,'>ZkMatch<CR>", mode = 'x', desc = 'Zk Match' },
-			{ '<leader>zb', '<Cmd>ZkBacklinks<CR>', desc = 'Zk Backlinks' },
-			{ '<leader>zl', '<Cmd>ZkLinks<CR>', desc = 'Zk Links' },
+			{ '<leader>zf', ":'<,'>ZkMatch<CR>",                                                            mode = 'x',
+				                                                                                                                      desc =
+				'Zk Match' },
+			{ '<leader>zb', '<Cmd>ZkBacklinks<CR>',                                                         desc =
+			'Zk Backlinks' },
+			{ '<leader>zl', '<Cmd>ZkLinks<CR>',                                                             desc = 'Zk Links' },
 		},
 		opts = { picker = 'telescope' },
 	},
@@ -574,7 +605,8 @@ return {
 		opts = {},
 		keys = {
 			{
-				'<leader>bd', function()
+				'<leader>bd',
+				function()
 					require('mini.bufremove').delete(0, false)
 				end,
 				desc = 'Delete Buffer'
