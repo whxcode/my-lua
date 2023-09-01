@@ -137,6 +137,23 @@ vim.api.nvim_create_autocmd('User', {
 	end,
 })
 
+local previewers = require('telescope.previewers')
+
+local new_maker = function(filepath, bufnr, opts)
+	opts = opts or {}
+
+	filepath = vim.fn.expand(filepath)
+	vim.loop.fs_stat(filepath, function(_, stat)
+		if not stat then return end
+		if stat.size > 100000 then
+			return
+		else
+			previewers.buffer_previewer_maker(filepath, bufnr, opts)
+		end
+	end)
+end
+
+
 -- Setup Telescope
 -- See telescope.nvim/lua/telescope/config.lua for defaults.
 return {
@@ -439,6 +456,9 @@ return {
 						},
 
 					},
+					buffer_previewer_maker = new_maker,
+
+
 				},
 				pickers = {
 					buffers = {

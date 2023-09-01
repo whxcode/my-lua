@@ -1,5 +1,8 @@
 -- Rafael Bodill's Neovim entry-point
 -- https://github.com/rafi/vim-config
+-- google
+-- 吃饭吃饭
+-- www.bing.cn
 
 local config = require('rafi.config')
 config.ensure_lazy()
@@ -43,7 +46,7 @@ require('lazy').setup(vim.tbl_extend('keep', config.user_lazy_opts(), {
 }))
 
 
-vim.cmd ([[
+vim.cmd([[
 function! Sw() range
     execute a:firstline . "," . a:lastline . 's/^\(.*\)$/\=strdisplaywidth( submatch(0) ) . " " . submatch(0)/'
     execute a:firstline . "," . a:lastline . 'sort n'
@@ -78,10 +81,70 @@ config.setup()
 -- Enjoy!
 --
 -- 配置 Neogit 显示行号
-require'neogit'.setup {
-    integrations = {
-        diffview = true,
-    },
-    -- 自定义 diff 渲染器
-    custom_diff_renderer = { line_numbers = true },
+require 'neogit'.setup {
+	integrations = {
+		diffview = true,
+	},
+	-- 自定义 diff 渲染器
+	custom_diff_renderer = { line_numbers = true },
+}
+
+
+-- default config
+require("bigfile").setup {
+	filesize = 5,     -- size of the file in MiB, the plugin round file sizes to the closest MiB
+	pattern = { "*" }, -- autocmd pattern or function see <### Overriding the detection of big files>
+	features = {      -- features to disable
+		"indent_blankline",
+		"illuminate",
+		"lsp",
+		"treesitter",
+		"syntax",
+		"matchparen",
+		"vimopts",
+		"filetype",
+		"neo-tree.nvim",
+		"LuaSnip",
+		"SchemaStore.nvim ",
+		"SnippetGenie ",
+		"awesome-vim-colorschemes ",
+		"ccc.nvim ",
+		"cmp-buffer ",
+		"cmp-emoji ",
+		"cmp-nvim-lsp ",
+		"cmp-path ",
+		"cmp-tmux ",
+		"cmp_luasnip ",
+		"diffview.nvim ",
+		"dracula.nvim ",
+		"guess-indent.nvim ",
+		"marks.nvim ",
+		"mini.ai ",
+		"mini.comment ",
+		"mini.trailspace ",
+		"neo-hybrid.vim ",
+		"neoconf-venom.nvim ",
+		"null-ls.nvim ",
+		"nvim-autopairs ",
+		"nvim-blackline ",
+		"nvim-navic ",
+		"nvim-notify ",
+		"nvim-surround ",
+		"nvim-treesitter-endwise ",
+		"nvim-ts-autotag ",
+		"nvim-ts-context-commentstring ",
+		"nvim-web-devicons ",
+		"nvim-window-picker ",
+		"persisted.nvim ",
+		"spelunker.vim ",
+		"suda.vim ",
+		"theme-loader.nvim ",
+		"todo-comments.nvim ",
+		"vim-colors-xcode ",
+		"vim-illuminate ",
+		"vim-matchup ",
+		"vim-tmux-navigator ",
+		"vim-visual-multi ",
+		"which-key.nvim ",
+	},
 }
