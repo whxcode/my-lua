@@ -71,19 +71,20 @@ return {
 		popup_border_style = 'rounded',
 
 		source_selector = {
-			winbar = false, -- toggle to show selector on winbar
+			winbar = false,  -- toggle to show selector on winbar
 			statusline = false, -- toggle to show selector on statusline
 			show_scrolled_off_parent_node = true,
 		},
 
 		event_handlers = {
-			-- Close neo-tree when opening a file.
 			{
-				event = 'file_opened',
-				handler = function()
-					require('neo-tree').close_all()
+				event = "neo_tree_buffer_enter",
+				handler = function(arg)
+					vim.cmd [[
+          setlocal relativenumber
+        ]]
 				end,
-			},
+			}
 		},
 
 		default_component_configs = {
@@ -129,7 +130,8 @@ return {
 
 				['g?'] = 'show_help',
 				['<2-LeftMouse>'] = 'open',
-				['<CR>'] = 'split_with_window_picker',
+				['<CR>'] = 'open',
+				['o'] = 'open',
 				['l'] = 'open_drop',
 				['h'] = 'close_node',
 				['C'] = 'close_node',
