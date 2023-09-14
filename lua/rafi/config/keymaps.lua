@@ -280,6 +280,11 @@ map('n', '<LocalLeader>c', function()
 	require('rafi.lib.contextmenu').show()
 end, { desc = 'Content-aware menu' })
 
+-- Context aware menu. See lua/lib/contextmenu.lua
+map('n', '<LocalLeader>l', function()
+	vim.cmd([[ setlocal relativenumber ]])
+end, { desc = 'relative number' })
+
 -- Lazygit
 map('n', '<leader>tg', function() Util.float_term({ 'lazygit' }, { cwd = Util.get_root(), esc_esc = false }) end,
 	{ desc = 'Lazygit (root dir)' })
