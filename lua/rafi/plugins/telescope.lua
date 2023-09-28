@@ -196,7 +196,7 @@ return {
 					}
 				}
 			},
-			{ '<localleader>g',  '<cmd>Telescope live_grep<CR>',                     desc = 'Grep' },
+			-- { '<localleader>g',  '<cmd>Telescope live_grep<CR>',                     desc = 'Grep' },
 			{ '<localleader>b',  '<cmd>Telescope buffers show_all_buffers=true<CR>', desc = 'Buffers' },
 			{ '<localleader>h',  '<cmd>Telescope highlights<CR>',                    desc = 'Highlights' },
 			{ '<localleader>j',  '<cmd>Telescope jumplist<CR>',                      desc = 'Jump list' },

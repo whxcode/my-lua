@@ -61,7 +61,7 @@ function M.get()
 		{ ']d',  M.diagnostic_goto(true),                              desc = 'Next Diagnostic' },
 		{ '[d',  M.diagnostic_goto(false),                             desc = 'Prev Diagnostic' },
 		{ ']e',  M.diagnostic_goto(true, 'ERROR'),                     desc = 'Next Error' },
-		{ '[e',  M.diagnostic_goto(false, 'ERROR'),                    desc = 'Prev Error' },
+		{ '[e',  M.diagnostic_goto(true, 'ERROR'),                    desc = 'Prev Error' },
 		{ ',wa', vim.lsp.buf.add_workspace_folder,                     desc = 'Show Workspace Folders' },
 		{ ',wr', vim.lsp.buf.remove_workspace_folder,                  desc = 'Remove Workspace Folder' },
 		{ ',wl', '<cmd>lua =vim.lsp.buf.list_workspace_folders()<CR>', desc = 'List Workspace Folders' },

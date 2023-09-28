@@ -305,10 +305,20 @@ return {
 		opts = { use_diagnostic_signs = true },
 		-- stylua: ignore
 		keys = {
-			{ '<leader>e',  '<cmd>TroubleToggle document_diagnostics<CR>',  noremap = true,                          desc =
-			'Document Diagnostics' },
-			{ ';r',         '<cmd>TroubleToggle workspace_diagnostics<CR>', noremap = true,                          desc =
-			'Workspace Diagnostics' },
+			{
+				'<leader>e',
+				'<cmd>TroubleToggle document_diagnostics<CR>',
+				noremap = true,
+				desc =
+				'Document Diagnostics'
+			},
+			{
+				';r',
+				'<cmd>TroubleToggle workspace_diagnostics<CR>',
+				noremap = true,
+				desc =
+				'Workspace Diagnostics'
+			},
 			{ '<leader>xx', '<cmd>TroubleToggle document_diagnostics<cr>',  desc = 'Document Diagnostics (Trouble)' },
 			{ '<leader>xX', '<cmd>TroubleToggle workspace_diagnostics<cr>', desc = 'Workspace Diagnostics (Trouble)' },
 			{ '<leader>xQ', '<cmd>TroubleToggle quickfix<cr>',              desc = 'Quickfix List (Trouble)' },
@@ -421,11 +431,23 @@ return {
 			{ '<Leader>o', '<cmd>SymbolsOutline<CR>', desc = 'Symbols Outline' },
 		},
 		opts = {
-			width = 30,
+			width = 40,
 			autofold_depth = 0,
-			keymaps = {
-				hover_symbol = 'K',
-				toggle_preview = 'p',
+			show_numbers = true,
+			show_relative_numbers = true,
+			keymaps = { -- These keymaps can be a string or a table for multiple keys
+				close = { "<Esc>", "q" },
+				goto_location = "<Cr>",
+				focus_location = "o",
+				hover_symbol = "<C-space>",
+				toggle_preview = "K",
+				rename_symbol = "r",
+				code_actions = "a",
+				fold = "h",
+				unfold = "l",
+				fold_all = "W",
+				unfold_all = "E",
+				fold_reset = "R",
 			},
 		},
 		init = function()
@@ -495,7 +517,7 @@ return {
 					-- "always" means to always use winbar,
 					-- "never" means to never use winbar
 					-- "smart" means to use winbar if cmdheight=0 and statusline if cmdheight > 0
-					use_winbar = 'never',   -- "always" | "never" | "smart"
+					use_winbar = 'never', -- "always" | "never" | "smart"
 				},
 
 				floating_big_letter = {
@@ -504,7 +526,7 @@ return {
 					-- additionally, user can pass in a table of fonts in to font
 					-- property to use instead
 
-					font = 'ansi-shadow',   -- ansi-shadow |
+					font = 'ansi-shadow', -- ansi-shadow |
 				},
 			},
 		},
@@ -532,12 +554,20 @@ return {
 			{ '<leader>zo', "<Cmd>ZkNotes { sort = { 'modified' } }<CR>",                                   desc = 'Zk Notes' },
 			{ '<leader>zt', '<Cmd>ZkTags<CR>',                                                              desc = 'Zk Tags' },
 			{ '<leader>zf', "<Cmd>ZkNotes { sort = { 'modified' }, match = vim.fn.input('Search: ') }<CR>", desc = 'Zk Search' },
-			{ '<leader>zf', ":'<,'>ZkMatch<CR>",                                                            mode = 'x',
-				                                                                                                                      desc =
-				'Zk Match' },
-			{ '<leader>zb', '<Cmd>ZkBacklinks<CR>',                                                         desc =
-			'Zk Backlinks' },
-			{ '<leader>zl', '<Cmd>ZkLinks<CR>',                                                             desc = 'Zk Links' },
+			{
+				'<leader>zf',
+				":'<,'>ZkMatch<CR>",
+				mode = 'x',
+				desc =
+				'Zk Match'
+			},
+			{
+				'<leader>zb',
+				'<Cmd>ZkBacklinks<CR>',
+				desc =
+				'Zk Backlinks'
+			},
+			{ '<leader>zl', '<Cmd>ZkLinks<CR>', desc = 'Zk Links' },
 		},
 		opts = { picker = 'telescope' },
 	},

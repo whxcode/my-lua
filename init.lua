@@ -148,3 +148,4 @@ require("bigfile").setup {
 		"which-key.nvim ",
 	},
 }
+
