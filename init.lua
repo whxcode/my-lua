@@ -57,3 +57,8 @@ require("lsp-file-operations").setup()
 vim.cmd [[colorscheme dracula]]
 
 console.log('1234')
+feaf
+faefawf
+faewfawf
+faefawef
+faewfawef
