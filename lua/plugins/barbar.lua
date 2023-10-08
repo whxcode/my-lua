@@ -12,9 +12,8 @@ local M = {
         -- insert_at_start = true,
         -- …etc.
     },
-    version = '^1.0.0',                 -- optional: only update when a new 1.x version is released
+    version = '^1.0.0', -- optional: only update when a new 1.x version is released
     config = function()
-
         require 'barbar'.setup {
             icons = {
                 button = '',
@@ -62,6 +61,7 @@ local M = {
         map('n', '<Tab>', '<Cmd>BufferNext<CR>', opts)
         map('n', ';x', '<Cmd>BufferClose<CR>', opts)
         map('n', '<C-p>', '<Cmd>BufferPick<CR>', opts)
+        map('n', ';q', '<Cmd>BufferCloseAllButCurrent<CR>', opts)
     end
 }
 
