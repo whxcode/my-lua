@@ -55,3 +55,5 @@ require("lsp-file-operations").setup()
 
 
 vim.cmd [[colorscheme dracula]]
+
+console.log('1234')
