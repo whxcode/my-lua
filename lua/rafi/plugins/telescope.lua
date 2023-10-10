@@ -482,6 +482,11 @@ return {
 						dynamic_preview_title = true,
 						layout_config = { width = 0.95, height = 0.95 },
 					},
+
+					git_status = {
+						dynamic_preview_title = true,
+						layout_config = { width = 0.98, height = 0.98,preview_width = 0.4 },
+					},
 					colorscheme = {
 						enable_preview = true,
 						layout_config = { preview_width = 0.9 },
