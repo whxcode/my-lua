@@ -466,7 +466,7 @@ return {
 						sort_mru = true,
 						show_all_buffers = true,
 						ignore_current_buffer = true,
-						layout_config = { width = width_large, height = 0.7 },
+						layout_config = { width = 0.98, height = 0.98,preview_width = 0.4 },
 						mappings = {
 							n = {
 								['dd'] = actions.delete_buffer,
@@ -495,11 +495,11 @@ return {
 					},
 					command_history = {
 						theme = 'dropdown',
-						layout_config = { width = width_medium, height = 0.9 },
+						layout_config = { width = 0.98, height = 0.98,preview_width = 0.4 },
 					},
 					search_history = {
 						theme = 'dropdown',
-						layout_config = { width = width_small, height = 0.8 },
+						layout_config = { width = 0.98, height = 0.98,preview_width = 0.4 },
 					},
 					spell_suggest = {
 						theme = 'cursor',
@@ -512,31 +512,31 @@ return {
 					oldfiles = {
 						theme = 'dropdown',
 						previewer = false,
-						layout_config = { width = width_medium, height = 0.7 },
+						layout_config = { width = 0.98, height = 0.98,preview_width = 0.4 },
 					},
 					lsp_definitions = {
-						layout_config = { width = width_large, preview_width = 0.55 },
+						layout_config = { width = 0.98, height = 0.98,preview_width = 0.4 },
 					},
 					lsp_implementations = {
-						layout_config = { width = width_large, preview_width = 0.55 },
+						layout_config = { width = 0.98, height = 0.98,preview_width = 0.4 },
 					},
 					lsp_references = {
-						layout_config = { width = width_large, preview_width = 0.55 },
+						layout_config = { width = 0.98, height = 0.98,preview_width = 0.4 },
 					},
 					lsp_code_actions = {
 						theme = 'cursor',
 						previewer = false,
-						layout_config = { width = 0.3, height = 0.4 },
+						layout_config = { width = 0.98, height = 0.98,preview_width = 0.4 },
 					},
 					lsp_range_code_actions = {
 						theme = 'cursor',
 						previewer = false,
-						layout_config = { width = 0.3, height = 0.4 },
+						layout_config = { width = 0.98, height = 0.98,preview_width = 0.4 },
 					},
 				},
 				extensions = {
 					persisted = {
-						layout_config = { width = 0.55, height = 0.55 },
+						layout_config = { width = 0.98, height = 0.98,preview_width = 0.4 },
 					},
 					zoxide = {
 						prompt_title = '[ Zoxide directories ]',
