@@ -205,7 +205,7 @@ return {
 			{ '<localleader>t',  '<cmd>Telescope lsp_dynamic_workspace_symbols<CR>', desc = 'Workspace symbols' },
 			{ '<localleader>v',  '<cmd>Telescope registers<CR>',                     desc = 'Registers' },
 			{ '<localleader>u',  '<cmd>Telescope spell_suggest<CR>',                 desc = 'Spell suggest' },
-			{ '<localleader>s',  '<cmd>Telescope persisted<CR>',                     desc = 'Sessions' },
+			-- { '<localleader>s',  '<cmd>Telescope persisted<CR>',                     desc = 'Sessions' },
 			-- { '<localleader>x',  '<cmd>Telescope oldfiles<CR>',                      desc = 'Old files' },
 			{ '<localleader>hc', '<cmd>Telescope command_history<CR>',               desc = 'Command history' },
 			{ '<localleader>:',  '<cmd>Telescope commands<CR>',                      desc = 'Commands' },

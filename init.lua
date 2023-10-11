@@ -1,9 +1,3 @@
--- Rafael Bodill's Neovim entry-point
--- https://github.com/rafi/vim-config
--- google
--- 吃饭吃饭
--- www.bing.cn
-
 local config = require('rafi.config')
 config.ensure_lazy()
 
@@ -69,11 +63,7 @@ let g:spelunker_check_type = 2
 
 set nospell
 
-
-highlight DiffAdd guifg=green guibg=NONE
-highlight DiffChange guifg=yellow guibg=NONE
-highlight DiffDelete guifg=red guibg=NONE
-
+let g:any_jump_list_numbers = 1
 ]])
 -- vim.api.nvim_set_keymap('n', ';;', ':', {  })
 
@@ -165,3 +155,7 @@ vim.keymap.set("n", "<leader>glra", gitlab.add_reviewer)
 vim.keymap.set("n", "<leader>glrd", gitlab.delete_reviewer)
 vim.keymap.set("n", "<leader>glp", gitlab.pipeline)
 vim.keymap.set("n", "<leader>glo", gitlab.open_in_browser)
+
+vim.keymap.set("n", ";s", require('substitute.range').operator, { noremap = true })
+vim.keymap.set("x", ";s", require('substitute.range').visual, { noremap = true })
+vim.keymap.set("n", ";ss", require('substitute.range').word, { noremap = true })

@@ -12,6 +12,9 @@ local M = {
         -- insert_at_start = true,
         -- …etc.
     },
+    keys = {
+        { '<C-p>', '<Cmd>BufferPick<CR>', desc = 'BufferPick', mode = 'n' },
+    },
     version = '^1.0.0', -- optional: only update when a new 1.x version is released
     config = function()
         require 'barbar'.setup {
@@ -61,7 +64,6 @@ local M = {
         map('n', '<S-Tab>', '<Cmd>BufferPrevious<CR>', opts)
         map('n', '<Tab>', '<Cmd>BufferNext<CR>', opts)
         map('n', ';x', '<Cmd>BufferClose<CR>', opts)
-        map('n', '<C-p>', '<Cmd>BufferPick<CR>', opts)
         map('n', ';q', '<Cmd>BufferCloseAllButCurrent<CR>', opts)
 
         map('n', '<C-1>', '<Cmd>BufferGoto 1<CR>', opts)
@@ -73,7 +75,6 @@ local M = {
         map('n', '<C-7>', '<Cmd>BufferGoto 7<CR>', opts)
         map('n', '<C-8>', '<Cmd>BufferGoto 8<CR>', opts)
         map('n', '<C-9>', '<Cmd>BufferGoto 9<CR>', opts)
-
     end
 }
 
