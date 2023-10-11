@@ -31,6 +31,8 @@ M.show = function()
 	-- Remove all menu options
 	pcall(vim.cmd.aunmenu, 'Context')
 
+	vim.cmd('nmenu Context.&Format <cmd>lua vim.lsp.buf.format()<CR>')
+
 	if cword == '' then
 		-- Cursor is on blank character.
 		vim.cmd([[
@@ -47,6 +49,7 @@ M.show = function()
 		if supports_method('textDocument/definition', clients) then
 			vim.cmd('nmenu Context.&Definition <cmd>lua vim.lsp.buf.definition()<CR>')
 		end
+
 
 		if supports_method('textDocument/references', clients) then
 			vim.cmd(

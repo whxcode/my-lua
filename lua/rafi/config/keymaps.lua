@@ -100,7 +100,7 @@ map('x', 'P', 'P:let @+=@0<CR>:let @"=@0<CR>', { silent = true, desc = 'Paste In
 -- ===
 
 -- Macros
-map('n', '<C-q>', 'q', { desc = 'Macro Prefix' })
+map('n', '<C-q>', '<cmd>exit<CR>', { desc = 'Macro Prefix' })
 
 -- Start new line from any cursor position in insert-mode
 map('i', '<S-Return>', '<C-o>o', { desc = 'Start Newline' })
@@ -323,25 +323,25 @@ local function handle_q()
 	local buf_count = vim.fn.bufnr('$')   -- 获取缓冲区数量
 
 	if buf_count > 1 then
-		vim.cmd('bdelete')     -- 关闭当前缓冲区
+		-- vim.cmd('bdelete')     -- 关闭当前缓冲区
 	else
-		vim.cmd('q')           -- 退出 Vim
+		-- vim.cmd('q')           -- 退出 Vim
 	end
 end
 
 
 
-if vim.F.if_nil(vim.g.rafi_window_q_mapping, true) then
-    vim.api.nvim_create_autocmd({ 'BufWinEnter', 'VimEnter' }, {
-        group = augroup('quit_mapping'),
-        callback = function(event)
-            if vim.bo.buftype == '' and vim.fn.maparg('q', 'n') == '' then
-                  map('n', 'q', '<cmd>quit<CR>', {})
-                    --map('n', 'q', '<Cmd>BufferClose<CR>', {})
-            end
-        end,
-    })
-end
+-- if vim.F.if_nil(vim.g.rafi_window_q_mapping, true) then
+--     vim.api.nvim_create_autocmd({ 'BufWinEnter', 'VimEnter' }, {
+--         group = augroup('quit_mapping'),
+--         callback = function(event)
+--             if vim.bo.buftype == '' and vim.fn.maparg('q', 'n') == '' then
+--                   map('n', 'q', '<cmd>quit<CR>', {})
+--                     map('n', 'q', '<Cmd>BufferClose<CR>', {})
+--             end
+--         end,
+--     })
+-- end
 
 -- Toggle quickfix window
 map('n', '<Leader>q', function()
