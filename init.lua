@@ -162,3 +162,5 @@ autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false
 
 vim.keymap.set("n", "<leader>gf", "<cmd>tab G<CR>")
 
+
+
