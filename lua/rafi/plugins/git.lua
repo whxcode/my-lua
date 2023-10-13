@@ -75,41 +75,6 @@ return {
 			end,
 		},
 	},
-	{
-		"NeogitOrg/neogit",
-	 	dependencies = { 'sindrets/diffview.nvim' },
-	 	cmd = 'Neogit',
-		dependencies = {
-			"nvim-lua/plenary.nvim",         -- required
-			"nvim-telescope/telescope.nvim", -- optional
-			"sindrets/diffview.nvim",        -- optional
-		},
-		-- config = true,
-	},
-
-	-----------------------------------------------------------------------------
-	-- {
-	-- 	'TimUntersberger/neogit',
-	-- 	dependencies = { 'sindrets/diffview.nvim' },
-	-- 	cmd = 'Neogit',
-	-- 	keys = {
-	-- 		{ '<Leader>mg', '<cmd>Neogit<CR>', desc = 'Neogit' },
-	-- 	},
-	-- 	-- See: https://github.com/TimUntersberger/neogit#configuration
-	-- 	opts = {
-	-- 		disable_signs = false,
-	-- 		disable_context_highlighting = false,
-	-- 		disable_commit_confirmation = false,
-	-- 		signs = {
-	-- 			section = { '>', 'v' },
-	-- 			item = { '>', 'v' },
-	-- 			hunk = { '', '' },
-	-- 		},
-	-- 		integrations = {
-	-- 			diffview = true,
-	-- 		},
-	-- 	},
-	-- },
 
 	-----------------------------------------------------------------------------
 	{

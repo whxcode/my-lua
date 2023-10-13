@@ -72,14 +72,6 @@ let g:any_jump_list_numbers = 1
 config.setup()
 -- Enjoy!
 --
--- 配置 Neogit 显示行号
-require 'neogit'.setup {
-	integrations = {
-		diffview = true,
-	},
-	-- 自定义 diff 渲染器
-	custom_diff_renderer = { line_numbers = true },
-}
 
 
 -- default config
@@ -158,9 +150,8 @@ vim.keymap.set("n", "<leader>glrd", gitlab.delete_reviewer)
 vim.keymap.set("n", "<leader>glp", gitlab.pipeline)
 vim.keymap.set("n", "<leader>glo", gitlab.open_in_browser)
 
-vim.keymap.set("n", ";s", require('substitute.range').operator, { noremap = true })
 vim.keymap.set("x", ";s", require('substitute.range').visual, { noremap = true })
-vim.keymap.set("n", ";ss", require('substitute.range').word, { noremap = true })
+vim.keymap.set("n", ";s", require('substitute.range').word, { noremap = true })
 
 -- Show line diagnostics automatically in hover window
 vim.o.updatetime = 250
