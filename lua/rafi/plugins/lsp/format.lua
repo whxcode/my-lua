@@ -64,14 +64,14 @@ function M.notify(formatters)
 		local line = '- **' .. client.name .. '**'
 		if client.name == 'null-ls' then
 			line = line
-				.. ' ('
-				.. table.concat(
-					vim.tbl_map(function(f)
-						return '`' .. f.name .. '`'
-					end, formatters.null_ls),
-					', '
-				)
-				.. ')'
+					.. ' ('
+					.. table.concat(
+						vim.tbl_map(function(f)
+							return '`' .. f.name .. '`'
+						end, formatters.null_ls),
+						', '
+					)
+					.. ')'
 		end
 		table.insert(lines, line)
 	end
@@ -104,7 +104,7 @@ function M.get_formatters(bufnr)
 	-- check if we have any null-ls formatters for the current filetype
 	local null_ls = package.loaded['null-ls']
 			and require('null-ls.sources').get_available(ft, 'NULL_LS_FORMATTING')
-		or {}
+			or {}
 
 	---@class LazyVimFormatters
 	local ret = {
@@ -135,14 +135,14 @@ end
 ---@param client lsp.Client
 function M.supports_format(client)
 	if
-		client.config
-		and client.config.capabilities
-		and client.config.capabilities['documentFormattingProvider'] == false
+			client.config
+			and client.config.capabilities
+			and client.config.capabilities['documentFormattingProvider'] == false
 	then
 		return false
 	end
 	return client.supports_method('textDocument/formatting')
-		or client.supports_method('textDocument/rangeFormatting')
+			or client.supports_method('textDocument/rangeFormatting')
 end
 
 ---@param opts PluginLspOpts

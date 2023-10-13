@@ -50,6 +50,8 @@ endfunction
 vnoremap <silent> <buffer> ,w :call Sw()<CR>
 
 
+set diffopt=internal,filler,closeoff,vertical
+
 set guicursor=n-v-c:block-Cursor
 set guicursor+=i:block-Cursor
 set guicursor+=n-v-c:block-Cursor
@@ -159,3 +161,13 @@ vim.keymap.set("n", "<leader>glo", gitlab.open_in_browser)
 vim.keymap.set("n", ";s", require('substitute.range').operator, { noremap = true })
 vim.keymap.set("x", ";s", require('substitute.range').visual, { noremap = true })
 vim.keymap.set("n", ";ss", require('substitute.range').word, { noremap = true })
+
+-- Show line diagnostics automatically in hover window
+vim.o.updatetime = 250
+vim.cmd [[
+autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})
+]]
+
+
+vim.keymap.set("n", "<leader>gf", "<cmd>tab G<CR>")
+

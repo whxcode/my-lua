@@ -26,20 +26,12 @@ return {
 		opts = {
 			-- Options for vim.diagnostic.config()
 			diagnostics = {
-				signs = true,
-				underline = true,
-				update_in_insert = false,
 				virtual_text = {
-					spacing = 4,
-					source = 'if_many',
-					prefix = '●',
+					prefix = "⭕️", -- 自定义前缀，可以根据您的喜好进行更改
+					spacing = 2, -- 文本之间的间距
 				},
-				severity_sort = true,
-				float = {
-					show_header = true,
-					border = 'rounded',
-					source = 'always',
-				},
+				update_in_insert = false, -- 限制更新频率
+				severity_sort = true, -- 根据严重性排序
 			},
 			-- Enable this to enable the builtin LSP inlay hints on Neovim >= 0.10.0
 			-- Be aware that you also will need to properly configure your LSP server to
@@ -116,6 +108,10 @@ return {
 				require('rafi.plugins.lsp.keymaps').on_attach(client, buffer)
 				return ret
 			end
+
+			vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, {
+				border = "single"
+			})
 
 			-- Diagnostics signs and highlights
 			for type, icon in pairs(require('rafi.config').icons.diagnostics) do
