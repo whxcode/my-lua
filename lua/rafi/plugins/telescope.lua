@@ -7,6 +7,9 @@
 
 local myactions = {}
 
+local action_state = require "telescope.actions.state"
+local ts_utils = require "telescope.utils"
+
 function myactions.send_to_qflist(prompt_bufnr)
 	require('telescope.actions').send_to_qflist(prompt_bufnr)
 	vim.api.nvim_command([[ botright copen ]])
@@ -461,12 +464,46 @@ return {
 
 				},
 				pickers = {
+					git_commits = {
+						mappings = {
+							i = {
+								["dd"] = function(prompt_bufnr)
+									actions.close(prompt_bufnr)
+									local value = action_state.get_selected_entry().value
+									local cmd = "DiffviewOpen " .. value .. "^!"
+									vim.cmd(cmd)
+								end,
+								["yy"] = function(prompt_bufnr)
+									actions.close(prompt_bufnr)
+									local value = action_state.get_selected_entry().value
+									vim.fn.setreg('*', value)
+								end,
+							}
+						}
+					},
+					git_bcommits = {
+						mappings = {
+							i = {
+								["dd"] = function(prompt_bufnr)
+									actions.close(prompt_bufnr)
+									local value = action_state.get_selected_entry().value
+									local cmd = "DiffviewOpen " .. value .. "^!"
+									vim.cmd(cmd)
+								end,
+								["yy"] = function(prompt_bufnr)
+									actions.close(prompt_bufnr)
+									local value = action_state.get_selected_entry().value
+									vim.fn.setreg('*', value)
+								end,
+							}
+						}
+					},
 					buffers = {
 						sort_lastused = true,
 						sort_mru = true,
 						show_all_buffers = true,
 						ignore_current_buffer = true,
-						layout_config = { width = 0.98, height = 0.98,preview_width = 0.4 },
+						layout_config = { width = 0.98, height = 0.98, preview_width = 0.4 },
 						mappings = {
 							n = {
 								['dd'] = actions.delete_buffer,
@@ -485,7 +522,7 @@ return {
 
 					git_status = {
 						dynamic_preview_title = true,
-						layout_config = { width = 0.98, height = 0.98,preview_width = 0.4 },
+						layout_config = { width = 0.98, height = 0.98, preview_width = 0.4 },
 					},
 					colorscheme = {
 						enable_preview = true,
@@ -500,11 +537,11 @@ return {
 					},
 					command_history = {
 						theme = 'dropdown',
-						layout_config = { width = 0.98, height = 0.98,preview_width = 0.4 },
+						layout_config = { width = 0.98, height = 0.98, preview_width = 0.4 },
 					},
 					search_history = {
 						theme = 'dropdown',
-						layout_config = { width = 0.98, height = 0.98,preview_width = 0.4 },
+						layout_config = { width = 0.98, height = 0.98, preview_width = 0.4 },
 					},
 					spell_suggest = {
 						theme = 'cursor',
@@ -517,31 +554,31 @@ return {
 					oldfiles = {
 						theme = 'dropdown',
 						previewer = false,
-						layout_config = { width = 0.98, height = 0.98,preview_width = 0.4 },
+						layout_config = { width = 0.98, height = 0.98, preview_width = 0.4 },
 					},
 					lsp_definitions = {
-						layout_config = { width = 0.98, height = 0.98,preview_width = 0.4 },
+						layout_config = { width = 0.98, height = 0.98, preview_width = 0.4 },
 					},
 					lsp_implementations = {
-						layout_config = { width = 0.98, height = 0.98,preview_width = 0.4 },
+						layout_config = { width = 0.98, height = 0.98, preview_width = 0.4 },
 					},
 					lsp_references = {
-						layout_config = { width = 0.98, height = 0.98,preview_width = 0.4 },
+						layout_config = { width = 0.98, height = 0.98, preview_width = 0.4 },
 					},
 					lsp_code_actions = {
 						theme = 'cursor',
 						previewer = false,
-						layout_config = { width = 0.98, height = 0.98,preview_width = 0.4 },
+						layout_config = { width = 0.98, height = 0.98, preview_width = 0.4 },
 					},
 					lsp_range_code_actions = {
 						theme = 'cursor',
 						previewer = false,
-						layout_config = { width = 0.98, height = 0.98,preview_width = 0.4 },
+						layout_config = { width = 0.98, height = 0.98, preview_width = 0.4 },
 					},
 				},
 				extensions = {
 					persisted = {
-						layout_config = { width = 0.98, height = 0.98,preview_width = 0.4 },
+						layout_config = { width = 0.98, height = 0.98, preview_width = 0.4 },
 					},
 					zoxide = {
 						prompt_title = '[ Zoxide directories ]',
