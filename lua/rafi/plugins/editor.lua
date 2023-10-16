@@ -302,7 +302,10 @@ return {
 	{
 		'folke/trouble.nvim',
 		cmd = { 'Trouble', 'TroubleToggle' },
-		opts = { use_diagnostic_signs = true },
+		opts = {
+			use_diagnostic_signs = true,
+			position = 'left',
+		},
 		-- stylua: ignore
 		keys = {
 			{
@@ -366,7 +369,7 @@ return {
 			})
 
 			return {
-				enhanced_diff_hl = true, -- See ':h diffview-config-enhanced_diff_hl'
+				enhanced_diff_hl = true,       -- See ':h diffview-config-enhanced_diff_hl'
 				file_panel = {
 					listing_style = "list",      -- One of 'list' or 'tree'
 					tree_options = {             -- Only applies when listing_style is 'tree'
