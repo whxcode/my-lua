@@ -135,21 +135,6 @@ require("bigfile").setup {
 
 
 
-local gitlab = require("gitlab")
-vim.keymap.set("n", "<leader>glr", gitlab.review)
-vim.keymap.set("n", "<leader>gls", gitlab.summary)
-vim.keymap.set("n", "<leader>glA", gitlab.approve)
-vim.keymap.set("n", "<leader>glR", gitlab.revoke)
-vim.keymap.set("n", "<leader>glc", gitlab.create_comment)
-vim.keymap.set("n", "<leader>gln", gitlab.create_note)
-vim.keymap.set("n", "<leader>gld", gitlab.toggle_discussions)
-vim.keymap.set("n", "<leader>glaa", gitlab.add_assignee)
-vim.keymap.set("n", "<leader>glad", gitlab.delete_assignee)
-vim.keymap.set("n", "<leader>glra", gitlab.add_reviewer)
-vim.keymap.set("n", "<leader>glrd", gitlab.delete_reviewer)
-vim.keymap.set("n", "<leader>glp", gitlab.pipeline)
-vim.keymap.set("n", "<leader>glo", gitlab.open_in_browser)
-
 
 -- Show line diagnostics automatically in hover window
 vim.o.updatetime = 250
@@ -162,14 +147,4 @@ nmap ;ss <plug>(SubversiveSubstituteWordRange)
 let g:sublimemonokai_term_italic = 1
 
 nnoremap ;r :%s/\<<C-r><C-w>\>/
-
-let cursormode_solarized_color_map = {
-      \   "nlight": "#657b83",
-      \   "ndark":  "#839496",
-      \   "i":      "#268bd2",
-      \   "v":      "#cb4b16",
-      \   "V":      "#b58900",
-      \   "\<C-V>": "#6c71c4",
-      \}
-
 ]]

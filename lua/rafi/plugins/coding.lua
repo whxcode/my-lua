@@ -46,12 +46,13 @@ return {
 				},
 				sources = cmp.config.sources({
 					{ name = 'nvim_lsp', priority = 50 },
+					{ name = "git" },
 					{ name = 'path',     priority = 40 },
 					{ name = 'luasnip',  priority = 30 },
 					{
 						name = 'buffer',
-						keyword_length = 1,
-						opts = {
+						keyword_length = 2,
+						option = {
 							get_bufnrs = function()
 								return vim.api.nvim_list_bufs()
 							end,
@@ -230,12 +231,12 @@ return {
 			local plugin = require('lazy.core.config').spec.plugins['mini.surround']
 			local opts = require('lazy.core.plugin').values(plugin, 'opts', false)
 			local mappings = {
-				{ opts.mappings.add, desc = 'Add surrounding', mode = { 'n', 'x' } },
-				{ opts.mappings.delete, desc = 'Delete surrounding' },
-				{ opts.mappings.find, desc = 'Find right surrounding' },
-				{ opts.mappings.find_left, desc = 'Find left surrounding' },
-				{ opts.mappings.highlight, desc = 'Highlight surrounding' },
-				{ opts.mappings.replace, desc = 'Replace surrounding' },
+				{ opts.mappings.add,            desc = 'Add surrounding',                     mode = { 'n', 'x' } },
+				{ opts.mappings.delete,         desc = 'Delete surrounding' },
+				{ opts.mappings.find,           desc = 'Find right surrounding' },
+				{ opts.mappings.find_left,      desc = 'Find left surrounding' },
+				{ opts.mappings.highlight,      desc = 'Highlight surrounding' },
+				{ opts.mappings.replace,        desc = 'Replace surrounding' },
 				{ opts.mappings.update_n_lines, desc = 'Update `MiniSurround.config.n_lines`' },
 			}
 			mappings = vim.tbl_filter(function(m)
@@ -245,12 +246,12 @@ return {
 		end,
 		opts = {
 			mappings = {
-				add = 'sa', -- Add surrounding in Normal and Visual modes
-				delete = 'ds', -- Delete surrounding
-				find = 'gzf', -- Find surrounding (to the right)
-				find_left = 'gzF', -- Find surrounding (to the left)
-				highlight = 'gzh', -- Highlight surrounding
-				replace = 'cs', -- Replace surrounding
+				add = 'sa',         -- Add surrounding in Normal and Visual modes
+				delete = 'ds',      -- Delete surrounding
+				find = 'gzf',       -- Find surrounding (to the right)
+				find_left = 'gzF',  -- Find surrounding (to the left)
+				highlight = 'gzh',  -- Highlight surrounding
+				replace = 'cs',     -- Replace surrounding
 				update_n_lines = 'gzn', -- Update `n_lines`
 			},
 		},
