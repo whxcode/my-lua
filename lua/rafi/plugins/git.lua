@@ -79,10 +79,10 @@ return {
 	-----------------------------------------------------------------------------
 	{
 		'tpope/vim-fugitive',
-		cmd = { 'G', 'Git', 'Gfetch', 'Gpush', 'Gclog', 'Gdiffsplit' },
+		cmd = { 'G'  },
 		keys = {
-			{ '<leader>gd', '<cmd>Gdiffsplit<CR>', desc = 'Git diff' },
-			{ '<leader>gb', '<cmd>Git blame<CR>', desc = 'Git blame' },
+			-- { '<leader>gd', '<cmd>Gdiffsplit<CR>', desc = 'Git diff' },
+			-- { '<leader>gb', '<cmd>Git blame<CR>', desc = 'Git blame' },
 		},
 		config = function()
 			vim.api.nvim_create_autocmd('FileType', {

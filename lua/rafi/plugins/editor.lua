@@ -315,13 +315,6 @@ return {
 				desc =
 				'Document Diagnostics'
 			},
-			{
-				';r',
-				'<cmd>TroubleToggle workspace_diagnostics<CR>',
-				noremap = true,
-				desc =
-				'Workspace Diagnostics'
-			},
 			{ '<leader>xx', '<cmd>TroubleToggle document_diagnostics<cr>',  desc = 'Document Diagnostics (Trouble)' },
 			{ '<leader>xX', '<cmd>TroubleToggle workspace_diagnostics<cr>', desc = 'Workspace Diagnostics (Trouble)' },
 			{ '<leader>xQ', '<cmd>TroubleToggle quickfix<cr>',              desc = 'Quickfix List (Trouble)' },

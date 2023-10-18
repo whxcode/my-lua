@@ -262,8 +262,8 @@ return {
 		event = 'VeryLazy',
 		dependencies = { 'JoosepAlviste/nvim-ts-context-commentstring' },
 		keys = {
-			{ '<Leader>v', 'gcc', remap = true, silent = true, mode = 'n' },
-			{ '<Leader>v', 'gc',  remap = true, silent = true, mode = 'x' },
+			-- { '<Leader>v', 'gcc', remap = true, silent = true, mode = 'n' },
+			-- { '<Leader>v', 'gc',  remap = true, silent = true, mode = 'x' },
 		},
 		opts = {
 			options = {

@@ -1,5 +1,5 @@
 local M = {
-	"kellywashere/nvim-blackline",
+	"vheon/vim-cursormode",
 	lazy = false,
 }
 

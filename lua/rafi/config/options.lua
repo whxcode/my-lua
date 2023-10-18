@@ -14,13 +14,13 @@ vim.g.maplocalleader = ';'
 
 local opt = vim.opt
 
-opt.mouse = 'nv'       -- Disable mouse in command-line mode
-opt.shell = 'zsh'       -- Disable mouse in command-line mode
-opt.errorbells = true  -- Trigger bell on error
-opt.visualbell = true  -- Use visual bell instead of beeping
-opt.hidden = true      -- Hide buffers when abandoned instead of unload
-opt.virtualedit = 'block'  -- Position cursor anywhere in visual block
-opt.confirm = true     -- Confirm to save changes before exiting modified buffer
+opt.mouse = 'nv'          -- Disable mouse in command-line mode
+opt.shell = 'zsh'         -- Disable mouse in command-line mode
+opt.errorbells = true     -- Trigger bell on error
+opt.visualbell = true     -- Use visual bell instead of beeping
+opt.hidden = true         -- Hide buffers when abandoned instead of unload
+opt.virtualedit = 'block' -- Position cursor anywhere in visual block
+opt.confirm = true        -- Confirm to save changes before exiting modified buffer
 
 -- History and persistence
 opt.history = 5000
@@ -46,9 +46,9 @@ opt.writebackup = false
 local USER = vim.env.USER or ''
 local SUDO_USER = vim.env.SUDO_USER or ''
 if
-	SUDO_USER ~= '' and USER ~= SUDO_USER
-	and vim.env.HOME ~= vim.fn.expand('~' .. USER, true)
-	and vim.env.HOME == vim.fn.expand('~' .. SUDO_USER, true)
+		SUDO_USER ~= '' and USER ~= SUDO_USER
+		and vim.env.HOME ~= vim.fn.expand('~' .. USER, true)
+		and vim.env.HOME == vim.fn.expand('~' .. SUDO_USER, true)
 then
 	vim.opt_global.modeline = false
 	vim.opt_global.undofile = false
@@ -72,9 +72,9 @@ opt.shiftround = true  -- Round indent to multiple of 'shiftwidth'
 -- Timing
 -- ===
 opt.ttimeout = true
-opt.timeoutlen = 500  -- Time out on mappings
-opt.ttimeoutlen = 10  -- Time out on key codes
-opt.updatetime = 500  -- Idle time to write swap and trigger CursorHold
+opt.timeoutlen = 500 -- Time out on mappings
+opt.ttimeoutlen = 10 -- Time out on key codes
+opt.updatetime = 500 -- Idle time to write swap and trigger CursorHold
 
 -- Searching
 -- ===
@@ -88,32 +88,32 @@ opt.path:append('**') -- Find recursively
 
 if vim.fn.executable('rg') then
 	opt.grepprg = 'rg --vimgrep --no-heading'
-		.. (opt.smartcase and ' --smart-case' or '') .. ' --'
+			.. (opt.smartcase and ' --smart-case' or '') .. ' --'
 elseif vim.fn.executable('ag') then
 	opt.grepprg = 'ag --vimgrep'
-		.. (opt.smartcase and ' --smart-case' or '') .. ' --'
+			.. (opt.smartcase and ' --smart-case' or '') .. ' --'
 end
 
 -- Formatting
 -- ===
 
-opt.wrap = false                -- No wrap by default
-opt.linebreak = false            -- Break long lines at 'breakat'
-opt.breakat = '\\ \\	;:,!?'    -- Long lines break chars
-opt.startofline = false         -- Cursor in same column for few commands
-opt.splitbelow = true           -- Splits open bottom right
+opt.wrap = false            -- No wrap by default
+opt.linebreak = false       -- Break long lines at 'breakat'
+opt.breakat = '\\ \\	;:,!?' -- Long lines break chars
+opt.startofline = false     -- Cursor in same column for few commands
+opt.splitbelow = true       -- Splits open bottom right
 opt.splitright = true
 opt.breakindentopt = { shift = 2, min = 20 }
 opt.formatoptions = opt.formatoptions
-	- 'a' -- Auto formatting is BAD.
-	- 't' -- Don't auto format my code. I got linters for that.
-	+ 'c' -- In general, I like it when comments respect textwidth
-	+ 'q' -- Allow formatting comments w/ gq
-	- 'o' -- O and o, don't continue comments
-	+ 'r' -- But do continue when pressing enter.
-	+ 'n' -- Indent past the formatlistpat, not underneath it.
-	+ 'j' -- Auto-remove comments if possible.
-	- '2' -- I'm not in gradeschool anymore
+		- 'a' -- Auto formatting is BAD.
+		- 't' -- Don't auto format my code. I got linters for that.
+		+ 'c' -- In general, I like it when comments respect textwidth
+		+ 'q' -- Allow formatting comments w/ gq
+		- 'o' -- O and o, don't continue comments
+		+ 'r' -- But do continue when pressing enter.
+		+ 'n' -- Indent past the formatlistpat, not underneath it.
+		+ 'j' -- Auto-remove comments if possible.
+		- '2' -- I'm not in gradeschool anymore
 
 -- Completion and Diff
 -- ===
@@ -134,34 +134,34 @@ opt.wildmode = 'longest:full,full' -- Command-line completion mode
 
 opt.termguicolors = true
 opt.shortmess:append({ W = true, I = true, c = true })
-opt.showmode = false    -- Don't show mode in cmd window
-opt.scrolloff = 2       -- Keep at least 2 lines above/below
-opt.sidescrolloff = 5   -- Keep at least 5 lines left/right
-opt.numberwidth = 2     -- Minimum number of columns to use for the line number
-opt.number = true      -- Don't show line numbers
-opt.relativenumber = true      -- Don't show line numbers
-opt.ruler = false       -- Disable default status ruler
-opt.list = true         -- Show hidden characters
+opt.showmode = false      -- Don't show mode in cmd window
+opt.scrolloff = 2         -- Keep at least 2 lines above/below
+opt.sidescrolloff = 5     -- Keep at least 5 lines left/right
+opt.numberwidth = 2       -- Minimum number of columns to use for the line number
+opt.number = true         -- Don't show line numbers
+opt.relativenumber = true -- Don't show line numbers
+opt.ruler = false         -- Disable default status ruler
+opt.list = true           -- Show hidden characters
 
-opt.showtabline = 2     -- Always show the tabs line
-opt.helpheight = 0      -- Disable help window resizing
-opt.winwidth = 30       -- Minimum width for active window
-opt.winminwidth = 1     -- Minimum width for inactive windows
-opt.winheight = 1       -- Minimum height for active window
-opt.winminheight = 1    -- Minimum height for inactive window
+opt.showtabline = 2       -- Always show the tabs line
+opt.helpheight = 0        -- Disable help window resizing
+opt.winwidth = 30         -- Minimum width for active window
+opt.winminwidth = 1       -- Minimum width for inactive windows
+opt.winheight = 1         -- Minimum height for active window
+opt.winminheight = 1      -- Minimum height for inactive window
 
-opt.showcmd = false     -- Don't show command in status line
+opt.showcmd = false       -- Don't show command in status line
 opt.cmdheight = 0
-opt.cmdwinheight = 5    -- Command-line lines
-opt.equalalways = true  -- Resize windows on split or close
+opt.cmdwinheight = 5      -- Command-line lines
+opt.equalalways = true    -- Resize windows on split or close
 --opt.colorcolumn = '+0'  -- Column highlight at textwidth's max character-limit
 
 opt.cursorline = true
 opt.cursorlineopt = { 'number', 'screenline' }
 
-opt.pumheight = 10      -- Maximum number of items to show in the popup menu
-opt.pumwidth = 10       -- Minimum width for the popup menu
-opt.pumblend = 10       -- Popup blend
+opt.pumheight = 10 -- Maximum number of items to show in the popup menu
+opt.pumwidth = 10  -- Minimum width for the popup menu
+opt.pumblend = 10  -- Popup blend
 
 if vim.fn.has('nvim-0.9') == 1 then
 	opt.splitkeep = 'screen'
@@ -172,15 +172,15 @@ end
 -- ===
 -- icons:  ▏│ ¦ ╎ ┆ ⋮ ⦙ ┊ 
 
-opt.showbreak = '↳  '
-opt.listchars = {
+opt.showbreak                 = '↳  '
+opt.listchars                 = {
 	tab = '  ',
 	extends = '⟫',
 	precedes = '⟪',
 	nbsp = '␣',
 	trail = '·'
 }
-opt.fillchars = {
+opt.fillchars                 = {
 	foldopen = '󰅀', -- 󰅀 
 	foldclose = '󰅂', -- 󰅂 
 	fold = ' ',
@@ -199,22 +199,22 @@ opt.fillchars = {
 -- Folds
 -- ===
 
-opt.foldenable     = true       -- enable folding
-opt.foldlevelstart = 10         -- open most folds by default
-opt.foldnestmax    = 10         -- 10 nested fold max
-opt.foldmethod     = "indent"   -- fold based on indent level
+opt.foldenable                = true -- enable folding
+opt.foldlevelstart            = 10 -- open most folds by default
+opt.foldnestmax               = 10 -- 10 nested fold max
+opt.foldmethod                = "indent" -- fold based on indent level
 
 -- Misc
 -- ===
 
 -- Disable python/perl/ruby/node providers
 vim.g.loaded_python3_provider = 0
-vim.g.loaded_perl_provider = 0
-vim.g.loaded_ruby_provider = 0
-vim.g.loaded_node_provider = 0
+vim.g.loaded_perl_provider    = 0
+vim.g.loaded_ruby_provider    = 0
+vim.g.loaded_node_provider    = 0
 
-vim.g.no_gitrebase_maps = 1 -- See share/nvim/runtime/ftplugin/gitrebase.vim
-vim.g.no_man_maps = 1       -- See share/nvim/runtime/ftplugin/man.vim
+vim.g.no_gitrebase_maps       = 1 -- See share/nvim/runtime/ftplugin/gitrebase.vim
+vim.g.no_man_maps             = 1 -- See share/nvim/runtime/ftplugin/man.vim
 
 -- Filetype detection
 -- ===

@@ -320,24 +320,29 @@ return {
 			{
 				'<leader>fg', "<cmd>Telescope git_status<CR>", desc = 'serach string',
 			},
-			-- {
-			-- 	'<leader>gg', function()
-			-- 		require('telescope.builtin').live_grep({
-			-- 			default_text = vim.fn.expand('<cword>'),
-			-- 		})
-			-- 	end,
-			-- 	desc = 'Grep cursor word',
-			-- },
-			-- {
-			-- 	'<leader>gg',
-			-- 	function()
-			-- 		require('telescope.builtin').live_grep({
-			-- 			default_text = require('rafi.lib.edit').get_visual_selection(),
-			-- 		})
-			-- 	end,
-			-- 	mode = 'x',
-			-- 	desc = 'Grep cursor word',
-			-- },
+
+			{
+				'<leader>vb',
+				"<cmd>Telescope advanced_git_search diff_branch_file<CR>",
+				desc = 'advanced_git_search diff_branch_file',
+			},
+
+			{
+				'<leader>vf',
+				"<cmd>Telescope advanced_git_search diff_commit_file<CR>",
+				desc = 'advanced_git_search diff_commit_file',
+			},
+
+			{
+				'<leader>vl',
+				"<cmd>Telescope advanced_git_search diff_commit_line<CR>",
+				desc = 'advanced_git_search diff_commit_line',
+			},
+			{
+				'<leader>vc',
+				"<cmd>Telescope advanced_git_search search_log_content<CR>",
+				desc = 'advanced_git_search search_log_content',
+			},
 
 		},
 		opts = function()
@@ -465,6 +470,10 @@ return {
 				},
 				pickers = {
 					git_commits = {
+						layout_config ={
+							width = 0.98,
+							height = 0.98,
+						},
 						mappings = {
 							i = {
 								["dd"] = function(prompt_bufnr)
@@ -482,6 +491,10 @@ return {
 						}
 					},
 					git_bcommits = {
+						layout_config ={
+							width = 0.98,
+							height = 0.98,
+						},
 						mappings = {
 							i = {
 								["dd"] = function(prompt_bufnr)
