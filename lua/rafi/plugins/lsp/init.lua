@@ -305,6 +305,11 @@ return {
 					fold_open = '󰅀', -- 󰅀 
 					folded = true,
 				},
+				border = {
+					enable = false, -- Show window borders. Only horizontal borders allowed
+					top_char = '―',
+					bottom_char = '―',
+				},
 				mappings = {
 					list = {
 						['<C-u>'] = actions.preview_scroll_win(5),

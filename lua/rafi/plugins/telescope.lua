@@ -309,7 +309,7 @@ return {
 				desc = 'Find symbol',
 			},
 			{
-				'<leader>gg', "<cmd>tab Neogit<CR>", desc = 'Git',
+				'<leader>gg', "<cmd>tab Neogit cwd=%:h<CR>", desc = 'Git',
 			},
 
 			{

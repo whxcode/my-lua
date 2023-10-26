@@ -147,4 +147,30 @@ nmap ;ss <plug>(SubversiveSubstituteWordRange)
 let g:sublimemonokai_term_italic = 1
 
 nnoremap ;r :%s/\<<C-r><C-w>\>/
+
+function! InsertHeaderGuard()
+    " Modify the define name format to your liking
+    let def = 'header_' . localtime() . '_' . expand('%:t:r') . '_' . expand('%:e')
+
+    " Append to the buffer
+    call append(0, '#ifndef ' . def)
+    call append(1, '#define ' . def)
+    call append(2, '')
+    call append(3, '')
+    call append(4, '')
+    call append(5, '#endif')
+
+    " Place cursor at line 4 column 1
+    call cursor(4, 1)
+endfunction
+
+" C++ headers
+autocmd BufNewFile *.{hpp,h} call InsertHeaderGuard()
+
+
+
+map ;n /\v<<C-r><C-w>><Left>
 ]]
+
+
+

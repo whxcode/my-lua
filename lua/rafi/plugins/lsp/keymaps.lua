@@ -2,7 +2,6 @@
 -- https://github.com/rafi/vim-config
 
 local M = {}
-
 ---@type PluginLspKeys
 M._keys = nil
 
@@ -25,9 +24,9 @@ function M.get()
 			has =
 			'declaration'
 		},
-		{ 'gd', "<cmd>Telescope lsp_definitions<CR>",              desc = 'Goto Definition', has = 'definition' },
-		{ 'gq', vim.lsp.buf.format,                  desc = 'format',          has = 'definition' },
-		{ 'gr', "<cmd>Telescope lsp_references<CR>", desc = 'References',      has = 'references' },
+		{ 'gd', "<cmd>Telescope lsp_definitions<CR>", desc = 'Goto Definition', has = 'definition' },
+		{ 'gq', vim.lsp.buf.format,                   desc = 'format',          has = 'definition' },
+		{ 'gr', "<cmd>Telescope lsp_references<CR>",  desc = 'References',      has = 'references' },
 		{
 			'gy',
 			vim.lsp.buf.type_definition,
@@ -58,20 +57,15 @@ function M.get()
 			has =
 			'signatureHelp'
 		},
-		{ ']d',  M.diagnostic_goto(true),                              desc = 'Next Diagnostic' },
-		{ '[d',  M.diagnostic_goto(false),                             desc = 'Prev Diagnostic' },
-		{ ']e',  M.diagnostic_goto(true, 'ERROR'),                     desc = 'Next Error' },
-		{ '[e',  M.diagnostic_goto(true, 'ERROR'),                    desc = 'Prev Error' },
+		{ ']d',  M.diagnostic_goto(true, 'WARN'),                      desc = 'Next Diagnostic' },
+		{ '[d',  M.diagnostic_goto(false, 'WARN'),                     desc = 'Prev Diagnostic' },
+		{ ']e',  M.diagnostic_goto(true),                              desc = 'Next Error' },
+		{ '[e',  M.diagnostic_goto(true),                              desc = 'Prev Error' },
 		{ ',wa', vim.lsp.buf.add_workspace_folder,                     desc = 'Show Workspace Folders' },
 		{ ',wr', vim.lsp.buf.remove_workspace_folder,                  desc = 'Remove Workspace Folder' },
 		{ ',wl', '<cmd>lua =vim.lsp.buf.list_workspace_folders()<CR>', desc = 'List Workspace Folders' },
 		{ 'K', function()
-			-- Show hover documentation or folded lines.
-			local winid = require('rafi.lib.utils').has('nvim-ufo')
-					and require('ufo').peekFoldedLinesUnderCursor() or nil
-			if not winid then
-				vim.lsp.buf.hover()
-			end
+			vim.lsp.buf.hover()
 		end },
 
 		{ '<Leader>ud', function() M.diagnostic_toggle(false) end, desc = 'Disable Diagnostics' },
@@ -132,12 +126,14 @@ function M.resolve(buffer)
 
 	local function add(keymap)
 		local keys = Keys.parse(keymap)
+
 		if keys[2] == false then
-			keymaps[keys.id] = nil
+			 keymaps[keys.id] = nil
 		else
-			keymaps[keys.id] = keys
+			 keymaps[keys.id] = keys
 		end
 	end
+
 	for _, keymap in ipairs(M.get()) do
 		add(keymap)
 	end
@@ -203,11 +199,29 @@ end
 ---@param next boolean
 ---@param severity string|nil
 ---@return fun()
+-- function M.diagnostic_goto(next, severity)
+-- 	local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
+-- 	local severity_int = severity and vim.diagnostic.severity[severity] or nil
+--
+-- 	return function()
+-- 		go({ severity = severity_int })
+-- 	end
+-- end
+--
+---@param next boolean
+---@param severity string|nil
+---@return fun()
 function M.diagnostic_goto(next, severity)
 	local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
-	local severity_int = severity and vim.diagnostic.severity[severity] or nil
+
 	return function()
-		go({ severity = severity_int })
+		if severity == 'ERROR' then
+			go({ severity = vim.diagnostic.severity.ERROR })
+		elseif severity == 'WARN' then
+			go({ severity = vim.diagnostic.severity.WARN })
+		else
+			go()
+		end
 	end
 end
 

@@ -61,7 +61,7 @@ function M.notify(formatters)
 	local lines = { '# Active:' }
 
 	for _, client in ipairs(formatters.active) do
-		local line = '- **' .. client.name .. '**'
+		local line = '- --' .. client.name .. '//'
 		if client.name == 'null-ls' then
 			line = line
 					.. ' ('

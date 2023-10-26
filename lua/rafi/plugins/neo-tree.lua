@@ -84,7 +84,7 @@ return {
           setlocal relativenumber
         ]]
 				end,
-			}
+			},
 		},
 
 		default_component_configs = {
