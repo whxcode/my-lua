@@ -72,8 +72,8 @@ return {
       { ",gld",  gitlab.toggle_discussions, desc = "gitlab.toggle_discussions" },
       { ",glaa", gitlab.add_assignee,       desc = "gitlab.add_assignee" },
       { ",glad", gitlab.delete_assignee,    desc = "gitlab.delete_assignee" },
-      { ",glra", gitlab.add_reviewer,       desc = "gitlab.add_reviewer" },
-      { ",glrd", gitlab.delete_reviewer,    desc = "gitlab.delete_reviewer" },
+      -- { ",glra", gitlab.add_reviewer,       desc = "gitlab.add_reviewer" },
+      -- { ",glrd", gitlab.delete_reviewer,    desc = "gitlab.delete_reviewer" },
       { ",glp",  gitlab.pipeline,           desc = "gitlab.pipeline" },
       { ",glo",  gitlab.open_in_browser,    desc = "gitlab.open_in_browser" },
     }

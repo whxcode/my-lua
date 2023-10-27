@@ -14,8 +14,10 @@ return {
 			'hrsh7th/cmp-buffer',
 			'hrsh7th/cmp-path',
 			'hrsh7th/cmp-emoji',
+			'uga-rosa/cmp-dictionary',
 			{ 'saadparwaiz1/cmp_luasnip', dependencies = 'L3MON4D3/LuaSnip' },
 			'andersevenrud/cmp-tmux',
+			'barklan/cmp-gitlog',
 		},
 		opts = function()
 			local cmp = require('cmp')
@@ -59,13 +61,18 @@ return {
 						}
 					},
 				}, {
-					{ name = 'emoji', insert = true, priority = 20 },
+					{ name = 'emoji',  insert = true,     priority = 20 },
 					{
 						name = 'tmux',
 						priority = 10,
 						keyword_length = 3,
 						option = { all_panes = true, label = 'tmux' },
 					},
+					{
+						name = "dictionary",
+						keyword_length = 2,
+					},
+					{ name = "gitlog", max_item_count = 5 },
 				}),
 				mapping = cmp.mapping.preset.insert({
 					-- <CR> accepts currently selected item.
