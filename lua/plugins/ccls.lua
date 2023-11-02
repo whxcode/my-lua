@@ -1,6 +1,7 @@
 return {
  		'mfussenegger/nvim-dap-python',
 }
+
 -- return {
 -- 	"ranjithshegde/ccls.nvim",
 -- 	lazy = false,
