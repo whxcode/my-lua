@@ -172,6 +172,3 @@ autocmd BufNewFile *.{hpp,h} call InsertHeaderGuard()
 
 map ;n /\v<<C-r><C-w>><Left>
 ]]
-
-
-
