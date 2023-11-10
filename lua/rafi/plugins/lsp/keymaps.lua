@@ -126,16 +126,15 @@ function M.resolve(buffer)
 
 	local function add(keymap)
 		local keys = Keys.parse(keymap)
-
 		if keys[2] == false then
-			 keymaps[keys.id] = nil
+			  keymaps[keys.id] = nil
 		else
-			 keymaps[keys.id] = keys
+			  keymaps[keys.id] = keys
 		end
 	end
 
 	for _, keymap in ipairs(M.get()) do
-		add(keymap)
+		 add(keymap)
 	end
 
 	local opts = require('rafi.lib.utils').opts('nvim-lspconfig')
@@ -143,7 +142,7 @@ function M.resolve(buffer)
 	for _, client in ipairs(clients) do
 		local maps = opts.servers[client.name] and opts.servers[client.name].keys or {}
 		for _, keymap in ipairs(maps) do
-			add(keymap)
+			 add(keymap)
 		end
 	end
 	return keymaps

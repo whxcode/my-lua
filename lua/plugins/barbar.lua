@@ -61,8 +61,8 @@ local M = {
         local map = vim.api.nvim_set_keymap
         local opts = { noremap = true, silent = true, desc = 'toggle buffers' }
 
-        map('n', '<S-Tab>', '<Cmd>BufferPrevious<CR>', opts)
-        map('n', '<Tab>', '<Cmd>BufferNext<CR>', opts)
+        map('n', '[b', '<Cmd>BufferPrevious<CR>', opts)
+        map('n', ']b', '<Cmd>BufferNext<CR>', opts)
         map('n', ';x', '<Cmd>BufferClose<CR>', opts)
         map('n', ';q', '<Cmd>BufferCloseAllButCurrent<CR>', opts)
 

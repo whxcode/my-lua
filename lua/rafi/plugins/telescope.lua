@@ -383,7 +383,7 @@ return {
 					multi_icon = " ",
 
 					path_display = { "truncate" },
-					file_ignore_patterns = { "node_modules" },
+					file_ignore_patterns = { "node_modules",".cache" },
 					set_env = { COLORTERM = "truecolor" },
 					vimgrep_arguments = has_ripgrep and vimgrep_args or nil,
 
