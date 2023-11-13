@@ -1,6 +1,8 @@
-*~
-/benchmarks/
-/spell/
-/.stignore
-/.stfolder
-/.stversions
+tt.*
+.tests
+doc/tags
+debug
+.repro
+foo.*
+*.log
+data
