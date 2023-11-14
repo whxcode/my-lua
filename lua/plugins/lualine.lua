@@ -6,8 +6,14 @@ return {
   event = "VeryLazy",
   opts = {
     sections = {
+      lualine_a = {
+        {
+          function()
+            return "vi"
+          end,
+        },
+      },
       lualine_c = {
-        -- Util.lualine.root_dir(),
         {
           "diagnostics",
           symbols = {

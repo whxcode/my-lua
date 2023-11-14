@@ -10,18 +10,25 @@ return {
   -- add cmp-emoji
   {
     "hrsh7th/nvim-cmp",
-    dependencies = { "hrsh7th/cmp-emoji" },
+    dependencies = {
+      "hrsh7th/cmp-emoji",
+      "hrsh7th/cmp-path",
+      "hrsh7th/cmp-cmdline",
+    },
     ---@param opts cmp.ConfigSchema
     opts = function(_, opts)
       local cmp = require("cmp")
       local luasnip = require("luasnip")
 
-      opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "emoji" } }))
+      opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "emoji" }, { name = "cmdline" } }))
       opts.preselect = cmp.PreselectMode.None
 
-      opts.completion = {
-        completeopt = "noselect",
-      }
+      -- opts.completion = vim.list_extend(opts.completion, {
+      --   completeopt = "noselect",
+      -- })
+      --
+
+      opts.completion.completeopt = "menu,noselect,insert"
 
       opts.mapping = {
 
