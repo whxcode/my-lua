@@ -14,5 +14,9 @@ return {
         node_decremental = "V",
       },
     }
+
+    vim.list_extend(opts.ensure_installed, {
+      "glimmer",
+    })
   end,
 }

@@ -23,6 +23,28 @@ return {
         "<cmd>Telescope live_grep<CR>",
         desc = "serach string",
       },
+
+      {
+        "<leader><leader>",
+        "<cmd>Telescope find_files<CR>",
+        {
+          desc = "Find files",
+          layout_config = {
+            -- height = 1,
+            --width = 1
+          },
+        },
+      },
+
+      {
+        "<leader>gl",
+        "<cmd>Telescope git_commits<CR>",
+      },
+
+      {
+        "<leader>gsl",
+        "<cmd>Telescope git_stash<CR>",
+      },
     },
     -- change some options
     opts = {
@@ -30,9 +52,60 @@ return {
         layout_strategy = "horizontal",
         layout_config = {
           prompt_position = "top",
+          width = 0.95,
+          height = 0.95,
         },
         sorting_strategy = "ascending",
         winblend = 0,
+      },
+      pickers = {
+        git_commits = {
+          mappings = {
+            i = {
+              ["dd"] = function(prompt_bufnr)
+                local action_state = require("telescope.actions.state")
+                local actions = require("telescope.actions")
+
+                actions.close(prompt_bufnr)
+                local value = action_state.get_selected_entry().value
+                local cmd = "DiffviewOpen " .. value .. "^!"
+                vim.cmd(cmd)
+              end,
+              ["yy"] = function(prompt_bufnr)
+                local action_state = require("telescope.actions.state")
+                local actions = require("telescope.actions")
+
+                actions.close(prompt_bufnr)
+                local value = action_state.get_selected_entry().value
+                vim.fn.setreg("*", value)
+              end,
+            },
+          },
+        },
+
+        git_stash = {
+          mappings = {
+            i = {
+              ["dd"] = function(prompt_bufnr)
+                local action_state = require("telescope.actions.state")
+                local actions = require("telescope.actions")
+
+                actions.close(prompt_bufnr)
+                local value = action_state.get_selected_entry().value
+                local cmd = "DiffviewOpen " .. value .. "^!"
+                vim.cmd(cmd)
+              end,
+              ["yy"] = function(prompt_bufnr)
+                local action_state = require("telescope.actions.state")
+                local actions = require("telescope.actions")
+
+                actions.close(prompt_bufnr)
+                local value = action_state.get_selected_entry().value
+                vim.fn.setreg("*", value)
+              end,
+            },
+          },
+        },
       },
     },
   },

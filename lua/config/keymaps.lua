@@ -18,8 +18,8 @@ map({ "n" }, "<leader>rn", function()
 end, { desc = "Format" })
 
 --
-map({ "n", "v" }, "<C-P>", "<cmd>BufferLinePick<cr>", { desc = "Picker Buffer" })
-map({ "n", "v" }, ";q", "<cmd>BufferLineCloseOthers<cr>", { desc = "Picker Buffer" })
+map({ "n", "v" }, "<C-P>", "<cmd>BufferLinePick<cr>")
+map({ "n", "v" }, ";q", "<cmd>BufferLineCloseOthers<cr>")
 map({ "n", "v" }, "<C-q>", "<cmd>exit<cr>", { desc = "exit nvim" })
 
 if require("lazyvim.util").has("inc-rename.nvim") then

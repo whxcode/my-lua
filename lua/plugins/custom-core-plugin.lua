@@ -13,14 +13,35 @@ return {
     dependencies = {
       "hrsh7th/cmp-emoji",
       "hrsh7th/cmp-path",
-      "hrsh7th/cmp-cmdline",
+      "f3fora/cmp-spell",
+      "octaltree/cmp-look",
     },
     ---@param opts cmp.ConfigSchema
     opts = function(_, opts)
       local cmp = require("cmp")
       local luasnip = require("luasnip")
 
-      opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "emoji" }, { name = "cmdline" } }))
+      opts.sources = cmp.config.sources(vim.list_extend(opts.sources, {
+        { name = "emoji" },
+        {
+          name = "spell",
+          option = {
+            keep_all_entries = false,
+            enable_in_context = function()
+              return true
+            end,
+          },
+        },
+        {
+          name = "look",
+          keyword_length = 2,
+          option = {
+            convert_case = true,
+            loud = true,
+            --dict = '/usr/share/dict/words'
+          },
+        },
+      }))
       opts.preselect = cmp.PreselectMode.None
 
       -- opts.completion = vim.list_extend(opts.completion, {

@@ -8,12 +8,15 @@ local M = {
     "ibhagwan/fzf-lua", -- optional
   },
   keys = {
-    { "<leader>gg", "<cmd>Neogit<CR>", desc = "Git panel" },
+    { "<leader>gg", "<cmd>Neogit cwd=%:h<CR>", desc = "Git panel" },
   },
   config = function()
     local neogit = require("neogit")
     neogit.setup({
       kind = "vsplit",
+      -- Add the following configuration to enable the git panel
+      -- in the current buffer
+      bufnr = vim.api.nvim_get_current_buf(),
     })
   end,
 }
