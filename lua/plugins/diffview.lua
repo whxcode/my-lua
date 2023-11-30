@@ -46,6 +46,12 @@ return {
           { "n", "st", actions.goto_file_tab },
           { "n", "<C-r>", actions.refresh_files },
           { "n", ";e", actions.toggle_files },
+          {
+            "n",
+            "u",
+            actions.toggle_stage_entry,
+            { desc = "Stage / unstage the selected entry" },
+          },
         },
         file_history_panel = {
           { "n", "q", "<cmd>DiffviewClose<CR>" },
