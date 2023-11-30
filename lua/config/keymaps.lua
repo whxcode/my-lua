@@ -30,3 +30,5 @@ if require("lazyvim.util").has("inc-rename.nvim") then
 else
   map({ "n" }, "<leader>rn", vim.lsp.buf.rename, { desc = "Rename" })
 end
+
+map({ "n" }, "<leader>gg", "")
