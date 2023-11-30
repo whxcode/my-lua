@@ -28,7 +28,11 @@ return {
           win_opts = {},
         },
       },
-
+      hooks = {
+        view_opened = function(bufnr)
+          vim.cmd([[setlocal relativenumber]])
+        end,
+      },
       keymaps = {
         view = {
           { "n", "q", "<cmd>DiffviewClose<CR>" },
@@ -36,6 +40,7 @@ return {
           { "n", "<S-Tab>", actions.select_prev_entry },
           { "n", "<LocalLeader>a", actions.focus_files },
           { "n", "<LocalLeader>e", actions.toggle_files },
+          { "n", "cc", "<cmd>G commit<CR>" },
         },
         file_panel = {
           { "n", "q", "<cmd>DiffviewClose<CR>" },
@@ -44,6 +49,7 @@ return {
           { "n", "gf", actions.goto_file },
           { "n", "sg", actions.goto_file_split },
           { "n", "st", actions.goto_file_tab },
+          { "n", "cc", "<cmd>G commit<CR>" },
           { "n", "<C-r>", actions.refresh_files },
           { "n", ";e", actions.toggle_files },
           {
