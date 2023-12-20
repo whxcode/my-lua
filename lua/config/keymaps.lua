@@ -32,3 +32,7 @@ else
 end
 
 map({ "n" }, "<leader>gg", "")
+
+map({ "n", "v" }, ",ci", "<cmd>ClangdToggleInlayHints<cr>", { desc = "ClangdToggleInlayHints" })
+map({ "n", "v" }, ",ca", "<cmd>ClangdAST<cr>", { desc = "ClangdAST" })
+map({ "n", "v" }, ",ch", "<cmd>ClangdTypeHierarchy<cr>", { desc = "ClangdTypeHierarchy" })

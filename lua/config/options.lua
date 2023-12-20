@@ -31,3 +31,15 @@ then
   vim.opt_global.writebackup = false
   vim.opt_global.shadafile = "NONE"
 end
+
+opt.foldenable = true -- enable folding
+opt.foldlevelstart = 10 -- open most folds by default
+opt.foldnestmax = 10 -- 10 nested fold max
+opt.foldmethod = "indent" -- fold based on indent level
+
+-- Enable python3 provider back for CopilotChat.nvim
+-- vim.g.loaded_python3_provider = 0
+-- Disable providers
+vim.g.loaded_ruby_provider = 0
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_node_provider = 0
