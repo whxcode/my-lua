@@ -108,6 +108,7 @@ return {
             { desc = "Delete the conflict region for the whole file" },
           },
           { "n", "cc", "<cmd>G commit<CR>" },
+          { "n", "q", "<cmd>DiffviewClose<CR>" },
         },
         file_panel = {
           { "n", "q", "<cmd>DiffviewClose<CR>" },
