@@ -43,3 +43,10 @@ opt.foldmethod = "indent" -- fold based on indent level
 vim.g.loaded_ruby_provider = 0
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_node_provider = 0
+
+vim.cmd([[
+set nocursorline
+set nocursorcolumn
+syntax sync minlines=200
+syntax sync maxlines=500
+]])
