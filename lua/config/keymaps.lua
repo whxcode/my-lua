@@ -36,3 +36,9 @@ map({ "n" }, "<leader>gg", "")
 map({ "n", "v" }, ",ci", "<cmd>ClangdToggleInlayHints<cr>", { desc = "ClangdToggleInlayHints" })
 map({ "n", "v" }, ",ca", "<cmd>ClangdAST<cr>", { desc = "ClangdAST" })
 map({ "n", "v" }, ",ch", "<cmd>ClangdTypeHierarchy<cr>", { desc = "ClangdTypeHierarchy" })
+
+-- Move current line down
+map("n", "<C-,>", ":m .+1<CR>", { noremap = true, silent = true })
+
+-- Move current line up
+map("n", "<C-.>", ":m .-2<CR>", { noremap = true, silent = true })
