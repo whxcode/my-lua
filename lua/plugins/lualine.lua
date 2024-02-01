@@ -1,5 +1,13 @@
 local Util = require("lazyvim.util")
 
+local current_signature = function()
+  if not pcall(require, "lsp_signature") then
+    return
+  end
+  local sig = require("lsp_signature").status_line(20)
+  return sig.label .. sig.hint
+end
+
 return {
   "nvim-lualine/lualine.nvim",
   event = "VeryLazy",
@@ -16,6 +24,9 @@ return {
       lualine_c = {
         {
           Util.lualine.pretty_path(),
+        },
+        {
+          current_signature,
         },
         {
 
