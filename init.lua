@@ -16,3 +16,11 @@ set diffopt=internal,filler,closeoff,vertical
 ]])
 
 vim.api.nvim_command("highlight CursorLine guibg=#333666")
+
+-- local lspconfig = require("lspconfig")
+--
+-- lspconfig.ccls.setup({
+--   capabilities = {
+--     offsetEncoding = { "utf-16" },
+--   },
+-- })
