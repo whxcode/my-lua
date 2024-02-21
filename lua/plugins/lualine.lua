@@ -42,8 +42,10 @@ return {
 
           navic_opts = nil, -- lua table with same format as setup's option. All options except "lsp" options take effect when set here.
         },
+        {
+          "tabs",
+        },
       },
-      lualine_b = {},
     },
   },
 }
