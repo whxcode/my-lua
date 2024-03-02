@@ -16,7 +16,16 @@ return {
       lualine_a = {
         {
           function()
-            return "😡"
+            local mode = vim.api.nvim_get_mode().mode
+            if mode == "n" then
+              return ""
+            elseif mode == "i" then
+              return ""
+            elseif mode == "v" then
+              return ""
+            else
+              return ""
+            end
           end,
         },
       },
