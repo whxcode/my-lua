@@ -24,3 +24,6 @@ vim.api.nvim_command("highlight CursorLine guibg=#333666")
 --     offsetEncoding = { "utf-16" },
 --   },
 -- })
+--
+
+-- 在你的 init.lua 文件中

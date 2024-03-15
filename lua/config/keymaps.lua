@@ -43,3 +43,28 @@ map("n", "<C-,>", ":m .+1<CR>", { noremap = true, silent = true })
 
 -- Move current line up
 map("n", "<C-.>", ":m .-2<CR>", { noremap = true, silent = true })
+
+-- 定义一个函数来执行 make 命令并发送通知
+local function make_uikit()
+  --local result = vim.fn.system("echo pwd")
+  -- require("notify")("UIKit compilation finished", "info")
+end
+
+-- 定义一个自定义命令
+
+map({ "n", "v" }, ",cu", function()
+  -- 保存当前工作目录
+  local current_dir = vim.fn.getcwd()
+
+  -- 改变工作目录到你的项目目录
+  vim.fn.chdir("~/webProject/mk-app/modules/uikit")
+
+  -- 执行 make 命令
+  local result = vim.fn.system("make uikit")
+
+  -- 恢复原来的工作目录
+  vim.fn.chdir(current_dir)
+
+  -- 发送通知
+  require("notify")("UIKit compilation finished", "info")
+end, { desc = "make uikit" })
