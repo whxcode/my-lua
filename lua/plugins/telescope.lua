@@ -3,6 +3,7 @@ return {
   -- change some telescope options and a keymap to browse plugin files
   {
     "nvim-telescope/telescope.nvim",
+
     keys = {
       -- add a keymap to browse plugin files
       -- stylua: ignore
@@ -114,27 +115,12 @@ return {
   {
     "telescope.nvim",
     dependencies = {
+
+      "dawsers/telescope-file-history.nvim",
       "nvim-telescope/telescope-fzf-native.nvim",
       build = "make",
       config = function()
         require("telescope").load_extension("fzf")
-      end,
-    },
-  },
-
-  {
-    "telescope.nvim",
-    dependencies = {
-      "dawsers/telescope-file-history.nvim",
-      config = function()
-        -- These are the default values
-        require("file_history").setup({
-          -- This is the location where it will create your file history repository
-          backup_dir = "~/.file-history-git",
-          -- command line to execute git
-          git_cmd = "git",
-        })
-        require("telescope").load_extension("file_history")
       end,
     },
   },
